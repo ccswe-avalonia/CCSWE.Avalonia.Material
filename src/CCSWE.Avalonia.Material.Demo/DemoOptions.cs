@@ -5,7 +5,7 @@ namespace CCSWE.Avalonia.Material.Demo;
 
 /// <summary>
 /// Command-line options for the gallery "record" mode — a hands-free tour (smooth-scroll every
-/// section in each theme variant, repeat) used to capture the README GIF with an external recorder
+/// section, switch Dark→Light, repeat) used to capture the README GIF with an external recorder
 /// such as ShareX. Enabled with <c>--record</c>; the start delay gives time to begin recording.
 /// </summary>
 public sealed class DemoOptions
@@ -13,7 +13,7 @@ public sealed class DemoOptions
     /// <summary>Pause at the top/bottom of each section and after switching theme.</summary>
     public TimeSpan Dwell { get; init; } = TimeSpan.FromMilliseconds(500);
 
-    /// <summary>Repeat the whole tour until the app is closed.</summary>
+    /// <summary>Repeat the whole Dark→Light tour until the app is closed.</summary>
     public bool Loop { get; init; }
 
     /// <summary>Run the hands-free tour on startup.</summary>

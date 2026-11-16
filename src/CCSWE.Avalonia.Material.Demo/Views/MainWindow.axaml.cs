@@ -47,8 +47,8 @@ public partial class MainWindow : Window
     private static ThemeVariant CurrentVariant => Application.Current?.RequestedThemeVariant ?? ThemeVariant.Dark;
 
     // Hands-free gallery tour used to capture the README GIF: after a start delay (to arm an
-    // external recorder), walk every section top→bottom with a smooth slow scroll in each theme
-    // variant, and repeat the pass. Drives the same nav/theme controls a user would.
+    // external recorder), walk every section top→bottom with a smooth slow scroll, switch
+    // Dark→Light, and repeat the pass. Drives the same nav/theme controls a user would.
     private async void OnRecordLoaded(object? sender, RoutedEventArgs e)
     {
         if (_options is not { Record: true } || _tourStarted)
@@ -144,7 +144,7 @@ public partial class MainWindow : Window
 
         do
         {
-            foreach (var variant in new[] { ThemeVariant.Dark, ThemeVariant.Light, MaterialTheme.DarkHighContrast, MaterialTheme.LightHighContrast })
+            foreach (var variant in new[] { ThemeVariant.Dark, ThemeVariant.Light })
             {
                 SetTheme(variant);
                 await Task.Delay(400);
