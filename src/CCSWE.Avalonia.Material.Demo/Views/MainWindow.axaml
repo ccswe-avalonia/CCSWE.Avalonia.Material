@@ -38,6 +38,8 @@
         <StreamGeometry x:Key="IconMoon">M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Zm0-80q88 0 158-48.5T740-375q-20 5-40 8t-40 3q-123 0-209.5-86.5T364-660q0-20 3-40t8-40q-78 32-126.5 102T200-480q0 116 82 198t198 82Zm-10-270Z</StreamGeometry>
         <StreamGeometry x:Key="IconRows">M200-520q-33 0-56.5-23.5T120-600v-160q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v160q0 33-23.5 56.5T760-520H200Zm0-80h560v-160H200v160Zm0 480q-33 0-56.5-23.5T120-200v-160q0-33 23.5-56.5T200-440h560q33 0 56.5 23.5T840-360v160q0 33-23.5 56.5T760-120H200Zm0-80h560v-160H200v160Zm0-560v160-160Zm0 400v160-160Z</StreamGeometry>
         <StreamGeometry x:Key="IconDateTime">M580-240q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z</StreamGeometry>
+        <StreamGeometry x:Key="IconContrast">M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm40-83q119-15 199.5-104.5T800-480q0-123-80.5-212.5T520-797v634Z</StreamGeometry>
+        <StreamGeometry x:Key="IconColors">M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 32.5-156t88-127Q256-817 330-848.5T488-880q80 0 151 27.5t124.5 76q53.5 48.5 85 115T880-518q0 115-70 176.5T640-280h-74q-9 0-12.5 5t-3.5 11q0 12 15 34.5t15 51.5q0 50-27.5 74T480-80Zm0-400Zm-220 40q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm120-160q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm200 0q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm120 160q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17ZM480-160q9 0 14.5-5t5.5-13q0-14-15-33t-15-57q0-42 29-67t71-25h70q66 0 113-38.5T800-518q0-121-92.5-201.5T488-800q-136 0-232 93t-96 227q0 133 93.5 226.5T480-160Z</StreamGeometry>
         <conv:NavIndexToPageConverter x:Key="NavIndexToPage" />
     </Window.Resources>
 
@@ -157,6 +159,12 @@
                         <TextBlock Classes="LabelLarge" Text="Icons" VerticalAlignment="Center" />
                     </StackPanel>
                 </ListBoxItem>
+                <ListBoxItem>
+                    <StackPanel Orientation="Horizontal" Spacing="12">
+                        <PathIcon Data="{StaticResource IconColors}" Width="24" Height="24" />
+                        <TextBlock Classes="LabelLarge" Text="Colors" VerticalAlignment="Center" />
+                    </StackPanel>
+                </ListBoxItem>
             </ListBox>
             <ListBox x:Name="RailList" Classes="NavigationRail" VerticalAlignment="Top"
                      IsVisible="{Binding IsRail}"
@@ -171,12 +179,14 @@
                 <ListBoxItem ToolTip.Tip="Tabs"><PathIcon Data="{StaticResource IconTabs}" Width="24" Height="24" /></ListBoxItem>
                 <ListBoxItem ToolTip.Tip="Containers"><PathIcon Data="{StaticResource IconContainers}" Width="24" Height="24" /></ListBoxItem>
                 <ListBoxItem ToolTip.Tip="Icons"><PathIcon Data="{StaticResource IconIcons}" Width="24" Height="24" /></ListBoxItem>
+                <ListBoxItem ToolTip.Tip="Colors"><PathIcon Data="{StaticResource IconColors}" Width="24" Height="24" /></ListBoxItem>
             </ListBox>
             </Panel>
         </DrawerPage.Drawer>
 
-        <!-- Pinned footer: one row — sun/moon theme toggle (left, hidden in the 80dp rail)
-             and the collapse/expand chevron (right; centers when collapsed to the rail).
+        <!-- Pinned footer: one row — sun/moon theme, contrast and density toggles (left,
+             hidden in the 80dp rail) and the collapse/expand chevron (right; centers when
+             collapsed to the rail).
              Both are M3 icon buttons (40dp container / 24dp glyph). -->
         <DrawerPage.DrawerFooter>
             <Border Padding="12,12" BorderBrush="{DynamicResource OutlineVariant}" BorderThickness="0,1,0,0">
@@ -186,6 +196,10 @@
                         <Button x:Name="ThemeToggleBtn" Classes="Icon"
                                 Click="OnThemeToggleClick" ToolTip.Tip="Toggle light / dark theme">
                             <PathIcon x:Name="ThemeIcon" Data="{StaticResource IconMoon}" Width="24" Height="24" />
+                        </Button>
+                        <Button x:Name="ContrastToggleBtn" Classes="Icon"
+                                Click="OnContrastToggleClick" ToolTip.Tip="Toggle high contrast">
+                            <PathIcon Data="{StaticResource IconContrast}" Width="24" Height="24" />
                         </Button>
                         <Button x:Name="DensityToggleBtn" Classes="Icon"
                                 Click="OnDensityToggleClick" ToolTip.Tip="Toggle normal / compact density">

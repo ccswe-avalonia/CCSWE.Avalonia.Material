@@ -6,7 +6,8 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md)
 
 A standalone **Material 3** theme for [Avalonia](https://avaloniaui.net) 12 — a
-Dark/Light color system, the M3 type scale, motion, embedded brand fonts, and M3
+color system with Dark, Light and high-contrast variants, the M3 type scale, motion,
+embedded fonts, and M3
 control themes across the full surface: buttons (toggle/split/dropdown/hyperlink +
 command bar + floating action button), text fields, autocomplete, numeric steppers, selection controls,
 lists, tree views, dropdowns, menus, expander, cards, group boxes, dividers, sliders,
@@ -15,10 +16,10 @@ date family (calendar, date/time pickers), page shells, and a navigation drawer 
 rail (`DrawerPage`). It depends only on **Avalonia core** — no
 `FluentTheme`/`SimpleTheme` base required; it supplies the whole control surface itself.
 
-It is the desktop sibling of the CCSWE **web** and **Android** bundles — all three
-consume the same shared cross-platform design tokens. This library turns those
-tokens into Avalonia `ResourceDictionary` + `Styles` and ships them as a NuGet
-package.
+It is the desktop sibling of the CCSWE **web** and **Android** libraries — all three
+consume the same shared cross-platform design tokens, which the CCSWE design system
+generates into this library's Avalonia `ResourceDictionary` + `Styles` token files.
+The library ships them, with its control themes, as a NuGet package.
 
 ![CCSWE.Avalonia.Material demo gallery — Material 3 controls with a Dark/Light toggle](docs/images/demo.gif)
 
@@ -65,7 +66,7 @@ depends only on Avalonia core. **No `<FluentTheme/>` or other base theme is requ
 </StackPanel>
 ```
 
-- **Buttons:** `Filled`, `FilledTonal`, `Elevated`, `Outlined`, `Text`, `Icon`.
+- **Buttons:** `Filled`, `FilledTonal`, `Elevated`, `Outlined`, `Text`, `Icon`, `Destructive`.
 - **Floating action button:** the `<theme:FloatingActionButton>` control — `Size` (`Small` / `Regular` / `Large`) and `Color` (`Primary` / `Secondary` / `Tertiary` / `Surface`) M3 mappings, with `Command` / `Click` inherited from `Button`.
 - **Text fields:** `Outlined`, `Filled`.
 - **Cards:** the `<theme:Card>` control for interactive cards — `Elevated` / `Filled` / `Outlined` classes, M3 hover/press state layers, and `Command` / `Click` (clickable when a `Command` is set, or `IsClickable="True"`). For a static surface, a plain `Border` with `Card` + `Elevated` / `Filled` / `Outlined` still works.
@@ -77,9 +78,13 @@ depends only on Avalonia core. **No `<FluentTheme/>` or other base theme is requ
   `ComboBox`, `Menu`, `Expander`, `Slider`, `ProgressBar`, `TabControl`, `TabStrip`.
 - **Type scale:** `DisplayLarge … LabelSmall` as `TextBlock` classes.
 - **Color roles:** `{DynamicResource Primary}` (brush) / `{DynamicResource PrimaryColor}`
-  (color). Use `DynamicResource` for role brushes so they re-resolve on a
-  Dark↔Light switch; `StaticResource` is fine for the theme-invariant metrics
-  (`CornerRadius*`, `Spacing*`, `Motion*`).
+  (color), including the fill pairs (`PrimaryFill` / `OnPrimaryFill`, `ErrorFill` /
+  `OnErrorFill`) for filled controls, `Accent` / `AccentStrong` for links, and the
+  `Success` / `Warning` / `Info` status roles. Use `DynamicResource` for role brushes so
+  they re-resolve when the theme variant changes; `StaticResource` is fine for the
+  theme-invariant metrics (`CornerRadius*`, `Spacing*`, `Motion*`).
+- **Fonts:** `BodyFontFamily`, `BrandFontFamily`, `MonoFontFamily` and `CodeFontFamily`
+  (`{DynamicResource CodeFontFamily}`), embedded in the package.
 - **Icons:** the theme's glyphs are [Google Material Symbols](https://fonts.google.com/icons)
   (Outlined), shipped as `StreamGeometry` resources keyed `Material_Icon*`
   (e.g. `Material_IconClose`, `Material_IconChevronRight`). Use any in your own UI via
@@ -88,12 +93,22 @@ depends only on Avalonia core. **No `<FluentTheme/>` or other base theme is requ
 
 ### Switching theme variant
 
-Dark is the default. Flip at runtime — the `ThemeDictionaries` do the rest:
+Dark is the CCSWE default. The variants are `ThemeVariant.Dark`, `ThemeVariant.Light`,
+`MaterialTheme.DarkHighContrast` and `MaterialTheme.LightHighContrast`. Switch at
+runtime — the `ThemeDictionaries` do the rest:
 
 ```csharp
-Application.Current!.RequestedThemeVariant =
-    isLight ? ThemeVariant.Light : ThemeVariant.Dark;
+Application.Current!.RequestedThemeVariant = MaterialTheme.DarkHighContrast;
 ```
+
+In XAML, a high-contrast variant is an `x:Static` reference:
+
+```xml
+<Application ... RequestedThemeVariant="{x:Static theme:MaterialTheme.DarkHighContrast}">
+```
+
+The theme doesn't follow the operating system's high-contrast setting; the app chooses
+the variant.
 
 ## Repository layout
 
@@ -101,27 +116,26 @@ Application.Current!.RequestedThemeVariant =
 src/
   CCSWE.Avalonia.Material/        the theme library (NuGet package)
     MaterialTheme.axaml(.cs)   the <theme:MaterialTheme/> entry (add this to App.axaml)
-    Tokens.axaml               Dark/Light color roles + metrics + M3 font sizes
+    Tokens.axaml               color roles per theme variant + metrics + M3 font sizes
     Fonts.axaml                embedded FontFamily resources
     Motion.axaml               durations + easings
     Typography.axaml           M3 type-scale TextBlock classes
     Controls/*.axaml           M3 control themes (hand-authored)
     *.cs                       custom control types (Card, Divider, ...; most controls theme stock Avalonia)
     Base/*.axaml               interim control base (forked from Simple 12.0.4)
-    Assets/Fonts/              embedded OFL TTFs (DM Sans, Plus Jakarta Sans)
+    Assets/Fonts/              embedded OFL TTFs (fetch-fonts.sh / .ps1)
   CCSWE.Avalonia.Material.Demo/   gallery app — visual verification harness
   CCSWE.Avalonia.Material.UnitTests/  headless NUnit tests
-tokens/                        shared token JSON (source of truth)
-docs/design-system/            the design-system handoff bundle (conventions, fonts, audit)
+docs/                          M3 conformance audit, GUI debugging, tasks
 docs/samples/                  App.axaml wiring sample
 ```
 
 The token files (`Tokens.axaml` / `Typography.axaml` / `Motion.axaml` / `Fonts.axaml`)
-are **emitted from the shared cross-platform tokens** — treat them as consume-verbatim
-and regenerate from `tokens/` rather than hand-editing. The library **owns** everything
-else: the `MaterialTheme` entry, all `Controls/*` M3 themes, the `Base/*` infrastructure,
-the font bytes, the custom control types (e.g. `Card`), and packaging. See [`CLAUDE.md`](CLAUDE.md) and
-[`docs/design-system/`](docs/design-system/) for the full contract.
+are **generated by the CCSWE design system** from the shared cross-platform tokens —
+never hand-edit them. The library **owns** everything else: the `MaterialTheme` entry,
+all `Controls/*` M3 themes, the `Base/*` infrastructure, the font bytes, the custom
+control types (e.g. `Card`), and packaging. See [`CLAUDE.md`](CLAUDE.md) for the full
+contract.
 
 ## Build & run
 
@@ -129,7 +143,7 @@ the font bytes, the custom control types (e.g. `Card`), and packaging. See [`CLA
 # Build everything
 dotnet build src/CCSWE.Avalonia.Material.slnx -c Release
 
-# Run the gallery (Dark/Light toggle + every themed control)
+# Run the gallery (theme, contrast and density toggles + every themed control)
 dotnet run --project src/CCSWE.Avalonia.Material.Demo
 
 # Pack the library
@@ -140,6 +154,6 @@ Requires the .NET SDK pinned in `global.json`.
 
 ## License
 
-The library is under [`LICENSE.md`](LICENSE.md). The embedded fonts (DM Sans, Plus
-Jakarta Sans) are under the SIL Open Font License 1.1 — their `OFL.txt` files ship
-alongside the TTFs in `src/CCSWE.Avalonia.Material/Assets/Fonts/`.
+The library is under [`LICENSE.md`](LICENSE.md). The embedded fonts and icons are
+listed in [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md); their license files ship
+alongside them in `src/CCSWE.Avalonia.Material/Assets/`.

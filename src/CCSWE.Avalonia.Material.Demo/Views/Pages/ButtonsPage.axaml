@@ -25,6 +25,7 @@
                         <Button Classes="Outlined" Content="Outlined" VerticalAlignment="Center" Margin="0,0, 0,12" />
                         <Button Classes="Text" Content="Text" VerticalAlignment="Center" Margin="0,0, 0,12" />
                         <Button Classes="Icon" Content="+" VerticalAlignment="Center" Margin="0,0, 0,12" />
+                        <Button Classes="Destructive" Content="Delete" VerticalAlignment="Center" Margin="0,0, 0,12" />
                     </WrapPanel>
                     <TextBlock Classes="LabelMedium" Foreground="{DynamicResource OnSurfaceVariant}" Text="DISABLED" />
                     <WrapPanel ItemSpacing="12">
@@ -34,6 +35,7 @@
                         <Button Classes="Outlined" Content="Outlined" IsEnabled="False" VerticalAlignment="Center" Margin="0,0, 0,12" />
                         <Button Classes="Text" Content="Text" IsEnabled="False" VerticalAlignment="Center" Margin="0,0, 0,12" />
                         <Button Classes="Icon" Content="+" IsEnabled="False" VerticalAlignment="Center" Margin="0,0, 0,12" />
+                        <Button Classes="Destructive" Content="Delete" IsEnabled="False" VerticalAlignment="Center" Margin="0,0, 0,12" />
                     </WrapPanel>
                     <TextBlock Classes="LabelMedium" Foreground="{DynamicResource OnSurfaceVariant}" Text="TOGGLE (off / on / disabled)" />
                     <WrapPanel>

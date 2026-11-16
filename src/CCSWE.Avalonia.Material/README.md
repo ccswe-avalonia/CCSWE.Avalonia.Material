@@ -1,7 +1,8 @@
 # CCSWE.Avalonia.Material
 
 A standalone **Material 3** theme for [Avalonia](https://avaloniaui.net) 12 — a
-Dark/Light color system, the M3 type scale, motion, embedded brand fonts, and M3
+color system with Dark, Light and high-contrast variants, the M3 type scale, motion,
+embedded fonts, and M3
 control themes for the full control set. Depends only on **Avalonia core** — no
 `FluentTheme`/`SimpleTheme` base required.
 
@@ -48,7 +49,7 @@ depends only on Avalonia core. **No `<FluentTheme/>` (or other base theme) is re
 </StackPanel>
 ```
 
-- **Buttons:** `Filled`, `FilledTonal`, `Elevated`, `Outlined`, `Text`, `Icon`.
+- **Buttons:** `Filled`, `FilledTonal`, `Elevated`, `Outlined`, `Text`, `Icon`, `Destructive`.
 - **Floating action button:** the `<theme:FloatingActionButton>` control — `Size` (`Small` / `Regular` / `Large`) and `Color` (`Primary` / `Secondary` / `Tertiary` / `Surface`) M3 mappings, with `Command` / `Click` inherited from `Button`.
 - **Text fields:** `Outlined`, `Filled`.
 - **Cards:** the `<theme:Card>` control for interactive cards (`Elevated` / `Filled` / `Outlined`, M3 hover/press state layers, `Command` / `Click`; clickable when a `Command` is set or `IsClickable="True"`), or a plain `Border` with `Card` + `Elevated` / `Filled` / `Outlined` for static surfaces.
@@ -59,8 +60,12 @@ depends only on Avalonia core. **No `<FluentTheme/>` (or other base theme) is re
   `Menu`, `Expander`, `Slider`, `ProgressBar`, `TabControl`, `TabStrip`.
 - **Type scale:** `DisplayLarge … LabelSmall` as `TextBlock` classes.
 - **Color roles:** `{DynamicResource Primary}` (brush) /
-  `{DynamicResource PrimaryColor}` (color). Use `DynamicResource` for role brushes
-  so they re-resolve when the theme variant flips.
+  `{DynamicResource PrimaryColor}` (color), including the fill pairs (`PrimaryFill` /
+  `OnPrimaryFill`, `ErrorFill` / `OnErrorFill`), `Accent` / `AccentStrong` for links,
+  and the `Success` / `Warning` / `Info` status roles. Use `DynamicResource` for role
+  brushes so they re-resolve when the theme variant changes.
+- **Fonts:** `BodyFontFamily`, `BrandFontFamily`, `MonoFontFamily` and
+  `CodeFontFamily`, embedded in the package.
 - **Icons:** Google Material Symbols (Outlined) ship as `StreamGeometry` resources
   keyed `Material_Icon*` (e.g. `Material_IconClose`). Reference any via
   `<PathIcon Data="{DynamicResource Material_IconMenu}" />`, or override one for your
@@ -68,17 +73,23 @@ depends only on Avalonia core. **No `<FluentTheme/>` (or other base theme) is re
 
 ### Switch theme variant at runtime
 
+The variants are `ThemeVariant.Dark`, `ThemeVariant.Light`,
+`MaterialTheme.DarkHighContrast` and `MaterialTheme.LightHighContrast`:
+
 ```csharp
-Application.Current!.RequestedThemeVariant =
-    isLight ? ThemeVariant.Light : ThemeVariant.Dark;
+Application.Current!.RequestedThemeVariant = MaterialTheme.DarkHighContrast;
 ```
+
+In XAML, use `{x:Static theme:MaterialTheme.DarkHighContrast}`. The theme doesn't
+follow the operating system's high-contrast setting; the app chooses the variant.
 
 ## License
 
 [MIT](https://github.com/ccswe-avalonia/CCSWE.Avalonia.Material/blob/master/LICENSE.md).
-Bundles **DM Sans** and **Plus Jakarta Sans** under the
-[SIL Open Font License 1.1](https://openfontlicense.org); their `OFL.txt` files
-ship in the package under `THIRD-PARTY-NOTICES/`.
+Bundles **DM Sans**, **Plus Jakarta Sans**, **DM Mono** and **JetBrains Mono** under
+the [SIL Open Font License 1.1](https://openfontlicense.org), and Google Material
+Symbols under the Apache License 2.0; their license files ship in the package under
+`THIRD-PARTY-NOTICES/`.
 
 Source, docs, and the control gallery:
 <https://github.com/ccswe-avalonia/CCSWE.Avalonia.Material>

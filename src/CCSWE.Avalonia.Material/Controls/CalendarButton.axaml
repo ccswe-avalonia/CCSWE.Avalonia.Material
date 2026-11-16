@@ -3,7 +3,7 @@
 
   <Styles.Resources>
     <!-- M3 month/year cell (Calendar year & decade views): pill-shaped, transparent default,
-         selected = Primary fill + OnPrimary, hover/pressed = OnSurface state layer. -->
+         selected = PrimaryFill + OnPrimaryFill, hover/pressed = OnSurface state layer. -->
     <ControlTheme x:Key="{x:Type CalendarButton}" TargetType="CalendarButton">
       <Setter Property="Foreground" Value="{DynamicResource OnSurface}" />
       <Setter Property="FontFamily" Value="{DynamicResource BodyFontFamily}" />
@@ -19,7 +19,7 @@
           <Panel Background="Transparent">
             <Border Name="SelectedBackground"
                     CornerRadius="{DynamicResource CornerRadiusFull}"
-                    Background="{DynamicResource Primary}"
+                    Background="{DynamicResource PrimaryFill}"
                     IsVisible="False" />
             <Border Name="StateLayer"
                     CornerRadius="{DynamicResource CornerRadiusFull}"
@@ -51,10 +51,10 @@
         <Setter Property="IsVisible" Value="True" />
       </Style>
       <Style Selector="^:selected /template/ Border#StateLayer">
-        <Setter Property="Background" Value="{DynamicResource OnPrimary}" />
+        <Setter Property="Background" Value="{DynamicResource OnPrimaryFill}" />
       </Style>
       <Style Selector="^:selected /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource OnPrimary}" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource OnPrimaryFill}" />
       </Style>
 
       <Style Selector="^:inactive /template/ ContentPresenter#PART_ContentPresenter">

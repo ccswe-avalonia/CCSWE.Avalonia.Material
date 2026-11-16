@@ -2,8 +2,7 @@
   Material 3 ComboBox (exposed dropdown menu). Closed control reads as an Outlined
   field (1px Outline, 4px radius, trailing caret), thickening to 2px Primary on
   focus. The dropdown POPUP surface is themed here in-control (SurfaceContainer,
-  rounded, elevation shadow) - this is how the bundle resolves popup chrome
-  without remapping Fluent's broad SystemControl* base brushes (see FLUENT-AUDIT).
+  rounded, elevation shadow).
   ComboBoxItem rows reuse the M3 list-item treatment. Default themes (no class).
 -->
 <Styles xmlns="https://github.com/avaloniaui"

@@ -16,6 +16,16 @@ texts ship in the NuGet package under `THIRD-PARTY-NOTICES/` and in the repo und
 - Upstream: https://github.com/google/fonts/tree/main/ofl/plusjakartasans
 - License text: `Assets/Fonts/PlusJakartaSans-OFL.txt`
 
+### DM Mono
+- License: SIL Open Font License 1.1
+- Upstream: https://github.com/google/fonts/tree/main/ofl/dmmono
+- License text: `Assets/Fonts/DMMono-OFL.txt`
+
+### JetBrains Mono
+- License: SIL Open Font License 1.1
+- Upstream: https://github.com/google/fonts/tree/main/ofl/jetbrainsmono
+- License text: `Assets/Fonts/JetBrainsMono-OFL.txt`
+
 The SIL Open Font License 1.1 permits bundling and redistribution (including
 commercial) inside an application or library, provided the license text
 accompanies the font binaries. See <https://openfontlicense.org>.

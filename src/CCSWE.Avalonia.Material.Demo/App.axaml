@@ -4,8 +4,9 @@
              xmlns:views="using:CCSWE.Avalonia.Material.Demo.Views"
              x:Class="CCSWE.Avalonia.Material.Demo.App"
              RequestedThemeVariant="Dark">
-             <!-- Dark is the CCSWE app default (matches web + upstream intent).
-                  The Demo flips this at runtime via the header toggle. -->
+             <!-- Dark is the CCSWE app default. The Demo switches variants at runtime with
+                  the theme and contrast toggles; a high-contrast start would be
+                  RequestedThemeVariant="{x:Static theme:MaterialTheme.DarkHighContrast}". -->
 
     <Application.Resources>
         <!-- Gallery section pages: scrollable content host. PART_Scroll is exposed by
@@ -24,7 +25,7 @@
 
     <Application.Styles>
         <!-- One-stop CCSWE Material 3 theme: supplies the whole control surface itself
-             (no base theme such as Fluent/Simple). Dark default; flip via RequestedThemeVariant. -->
+             (no base theme such as Fluent/Simple). Select a variant via RequestedThemeVariant. -->
         <theme:MaterialTheme />
     </Application.Styles>
 </Application>

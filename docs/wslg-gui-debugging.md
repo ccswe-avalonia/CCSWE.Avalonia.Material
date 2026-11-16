@@ -30,6 +30,27 @@ WSLg is live when `DISPLAY=:0` and these tools exist (all present on this machin
 
 Quick check: `DISPLAY=:0 xdotool getdisplaygeometry` should print the screen size.
 
+### Hosts without a display (Xvfb)
+
+On a Linux host with no display, run a virtual one and use `DISPLAY=:99` everywhere below:
+
+```bash
+sudo apt install -y xvfb xdotool      # once; ImageMagick provides import / convert
+Xvfb :99 -screen 0 1600x1000x24 -nolisten tcp   # in the BACKGROUND
+```
+
+There is no window manager, so the window opens at a fixed position and needs no activation.
+Wait about a second after a nav click before capturing (the page cross-fade). To record the
+`--record` tour, capture the window region with ffmpeg and convert it for
+`eng/optimize-demo-gif.sh` (window position from `xdotool getwindowgeometry`):
+
+```bash
+ffmpeg -f x11grab -framerate 15 -video_size 1024x768 -i ":99.0+<x>,<y>" tour.mp4
+ffmpeg -ss <start> -to <end> -i tour.mp4 \
+  -vf "fps=5,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=none:diff_mode=rectangle" raw.gif
+SCALE=0.727 eng/optimize-demo-gif.sh raw.gif    # 1024px -> the README's 744px
+```
+
 ---
 
 ## 2. Build & launch
@@ -83,11 +104,11 @@ grabs black. If multiple ids match, you left stale windows open — `pkill` (abo
 
 The window exists (step 3) **~1s before it renders**, so capturing immediately grabs a blank frame.
 Foreground `sleep` is blocked in this sandbox — gate on real content instead of a fixed delay
-(`read -t` is the allowed settle; `sleep 0.5` works only if your shell permits it):
+(`timeout 1 tail -f /dev/null` waits one second; `read -t 1 </dev/null` does not wait, it returns at EOF):
 
 ```bash
 for i in $(seq 1 30); do
-  read -t 1 _ </dev/null || true
+  timeout 1 tail -f /dev/null
   import -window "$wid" /tmp/shot.png 2>/dev/null
   m=$(convert /tmp/shot.png -format "%[mean]" info: 2>/dev/null | cut -d. -f1)
   [ "${m:-0}" -gt 200 ] && break        # painted (a dark M3 page is ~5000–6000; ~0 = blank placeholder)
@@ -162,7 +183,7 @@ Give the window an explicit size (headless windows are 0×0 otherwise); set
 | `wid=` empty / wrong window | filter by exact `getwindowname`, not the substring |
 | wheel ticks do nothing | pointer wasn't warped onto the content — `xdotool mousemove X Y` first, then `click 5` |
 | `import -window root` fails ("unable to read X window image root") | grab a specific window id, not the root |
-| heredocs / foreground `sleep` blocked | use the Write tool / `printf`; gate waits with `timeout` + `xdotool --sync` and `read -t` |
+| heredocs / foreground `sleep` blocked | use the Write tool / `printf`; gate waits with `timeout` + `xdotool --sync`, and wait with `timeout N tail -f /dev/null` |
 
 ---
 

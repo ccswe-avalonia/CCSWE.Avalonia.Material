@@ -126,11 +126,11 @@
             <!-- Shown on hover at top edge in fullscreen mode -->
             <Panel Height="30"
                    VerticalAlignment="Top"
-                   Background="{DynamicResource Primary}"
+                   Background="{DynamicResource PrimaryFill}"
                    WindowDecorationProperties.ElementRole="TitleBar">
               <TextBlock Text="{TemplateBinding Title}"
                          VerticalAlignment="Center"
-                         Foreground="White"
+                         Foreground="{DynamicResource OnPrimaryFill}"
                          Margin="12,0,0,0"
                          FontSize="12" />
               <StackPanel HorizontalAlignment="Right"
@@ -142,7 +142,7 @@
                         WindowDecorationProperties.ElementRole="FullScreenButton">
                   <Viewbox Width="11" Margin="2">
                     <Path Stretch="Uniform"
-                          Fill="{DynamicResource CaptionButtonForeground}"
+                          Fill="{DynamicResource OnPrimaryFill}"
                           Data="{DynamicResource Material_IconFullscreenExit}" />
                   </Viewbox>
                 </Button>
@@ -154,7 +154,7 @@
                         AutomationProperties.Name="Close">
                   <Viewbox Width="11" Margin="2">
                     <Path Stretch="Uniform"
-                          Fill="{DynamicResource CaptionButtonForeground}"
+                          Fill="{DynamicResource OnPrimaryFill}"
                           Data="{DynamicResource Material_IconClose}" />
                   </Viewbox>
                 </Button>

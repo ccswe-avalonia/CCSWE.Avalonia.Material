@@ -2,9 +2,8 @@
   Material 3 menus: Menu (bar), MenuItem (bar + submenu rows), ContextMenu and
   MenuFlyoutPresenter (the popup surface), and Separator. The popup surface is
   themed here in-control (SurfaceContainer, 4px radius, elevation, 4px vertical
-  pad) - the bundle's resolution for popup chrome instead of remapping Fluent's
-  broad SystemControl* base brushes (see FLUENT-AUDIT). MenuItem rows carry the
-  M3 state layer; the submenu opens from PART_Popup. Default themes (no class).
+  pad). MenuItem rows carry the M3 state layer; the submenu opens from PART_Popup.
+  Default themes (no class).
 -->
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">

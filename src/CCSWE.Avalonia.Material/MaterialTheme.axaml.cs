@@ -19,15 +19,30 @@ namespace CCSWE.Avalonia.Material;
 ///   &lt;/Application.Styles&gt;
 /// &lt;/Application&gt;
 /// </code>
-/// Dark is the default variant; select via <c>Application.RequestedThemeVariant</c>.
+/// Select a variant via <c>RequestedThemeVariant</c>: <see cref="ThemeVariant.Dark"/>,
+/// <see cref="ThemeVariant.Light"/>, <see cref="DarkHighContrast"/> or <see cref="LightHighContrast"/>.
 /// Set <see cref="DensityStyle"/> to <see cref="Material.DensityStyle.Compact"/> for a
 /// denser, desktop-oriented layout.
 /// </summary>
 public class MaterialTheme : Styles, IResourceNode
 {
+    /// <summary>
+    /// The dark high-contrast variant. Inherits <see cref="ThemeVariant.Dark"/>; in XAML use
+    /// <c>{x:Static theme:MaterialTheme.DarkHighContrast}</c>.
+    /// </summary>
+    [PublicAPI]
+    public static readonly ThemeVariant DarkHighContrast = new(nameof(DarkHighContrast), ThemeVariant.Dark);
+
     public static readonly DirectProperty<MaterialTheme, DensityStyle> DensityStyleProperty =
         AvaloniaProperty.RegisterDirect<MaterialTheme, DensityStyle>(
             nameof(DensityStyle), o => o.DensityStyle, (o, v) => o.DensityStyle = v);
+
+    /// <summary>
+    /// The light high-contrast variant. Inherits <see cref="ThemeVariant.Light"/>; in XAML use
+    /// <c>{x:Static theme:MaterialTheme.LightHighContrast}</c>.
+    /// </summary>
+    [PublicAPI]
+    public static readonly ThemeVariant LightHighContrast = new(nameof(LightHighContrast), ThemeVariant.Light);
 
     private readonly ResourceDictionary _compactStyles;
     private DensityStyle _densityStyle;

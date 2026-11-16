@@ -11,6 +11,33 @@
                            Text="The full Material 3 type scale — 15 roles across Display, Headline, Title, Body, and Label." />
             </StackPanel>
 
+            <!-- FONTS -->
+            <StackPanel Spacing="8">
+                <TextBlock Classes="LabelLarge" Foreground="{DynamicResource Primary}" Text="FONTS" />
+                <Border Classes="Card Outlined">
+                    <StackPanel Spacing="16">
+                        <StackPanel Spacing="2">
+                            <TextBlock FontFamily="{DynamicResource BrandFontFamily}" FontSize="20" FontWeight="SemiBold" Text="BrandFontFamily — Plus Jakarta Sans" />
+                            <TextBlock Classes="LabelSmall" Foreground="{DynamicResource OnSurfaceVariant}" Text="SemiBold" />
+                        </StackPanel>
+                        <StackPanel Spacing="2">
+                            <TextBlock FontFamily="{DynamicResource BodyFontFamily}" FontSize="16" Text="BodyFontFamily — DM Sans" />
+                            <TextBlock Classes="LabelSmall" Foreground="{DynamicResource OnSurfaceVariant}" Text="Normal" />
+                        </StackPanel>
+                        <StackPanel Spacing="2">
+                            <TextBlock FontFamily="{DynamicResource MonoFontFamily}" FontSize="16" Text="MonoFontFamily — DM Mono 0123456789" />
+                            <TextBlock FontFamily="{DynamicResource MonoFontFamily}" FontSize="16" FontWeight="Medium" Text="MonoFontFamily — DM Mono 0123456789" />
+                            <TextBlock Classes="LabelSmall" Foreground="{DynamicResource OnSurfaceVariant}" Text="Normal / Medium" />
+                        </StackPanel>
+                        <StackPanel Spacing="2">
+                            <TextBlock FontFamily="{DynamicResource CodeFontFamily}" FontSize="16" Text="CodeFontFamily — var x = items.Count(i =&gt; i.IsEnabled);" />
+                            <TextBlock FontFamily="{DynamicResource CodeFontFamily}" FontSize="16" FontWeight="Bold" Text="CodeFontFamily — var x = items.Count(i =&gt; i.IsEnabled);" />
+                            <TextBlock Classes="LabelSmall" Foreground="{DynamicResource OnSurfaceVariant}" Text="Normal / Bold" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
             <!-- DISPLAY -->
             <StackPanel Spacing="8">
                 <TextBlock Classes="LabelLarge" Foreground="{DynamicResource Primary}" Text="DISPLAY" />
