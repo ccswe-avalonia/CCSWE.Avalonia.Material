@@ -127,7 +127,7 @@
         <ControlTemplate TargetType="ButtonSpinner">
           <!-- OVERLAY structure: PART_BorderElement is an EMPTY sibling of the content
                Grid inside a Panel, so :focus-within thickening it 1->2 is paint-only and
-               the field content does NOT reflow (container-border rule, see CONVENTIONS).
+               the field content does NOT reflow (container-border rule, see CLAUDE.md).
                The field's 16px text padding + the spinner's 6px margin clear the 2px border. -->
           <Panel>
             <Border x:Name="PART_BorderElement"

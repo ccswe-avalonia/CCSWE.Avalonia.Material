@@ -13,9 +13,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:theme="using:CCSWE.Avalonia.Material"
              RequestedThemeVariant="Dark">
-  <!-- RequestedThemeVariant="Dark" makes dark the app default, matching web and
-       the upstream design intent. Set "Light" or bind to a setting to switch;
-       the theme's ThemeDictionaries respond automatically. -->
+  <!-- RequestedThemeVariant="Dark" makes dark the app default (the CCSWE default).
+       Set "Light", a high-contrast variant via x:Static
+       (RequestedThemeVariant="{x:Static theme:MaterialTheme.DarkHighContrast}"), or
+       switch at runtime; the theme's ThemeDictionaries respond automatically. -->
 
   <Application.Styles>
     <!-- One element: the standalone Material 3 theme. It supplies the whole

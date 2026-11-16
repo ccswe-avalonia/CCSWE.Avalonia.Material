@@ -12,7 +12,7 @@
   and alias them onto the CCSWE M3 token system (Tokens.axaml).
 
   Brush aliases bind their Color via {DynamicResource <Role>Color} so they track the
-  Dark/Light ThemeVariant flip through the underlying M3 color token (the brush itself
+  ThemeVariant change through the underlying M3 color token (the brush itself
   can live in this single flat dictionary; the variance rides on the color token).
 
   This is the no-base analog of FluentOverrides.axaml, but ADDITIVE (it defines the

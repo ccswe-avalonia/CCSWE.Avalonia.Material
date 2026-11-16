@@ -7,7 +7,7 @@
                    layer (hover .08 / pressed .10).
     - :checked   - SecondaryContainer fill, OnSecondaryContainer label, border
                    recolored to Transparent (thickness stays 1px so the pill does
-                   NOT reflow on toggle - container-border rule, see CONVENTIONS);
+                   NOT reflow on toggle - container-border rule, see CLAUDE.md);
                    state layer = OnSecondaryContainer.
     - :disabled  - container OnSurface12 (checked) / border OnSurface12 (unselected),
                    label recolored to the neutral OnSurface38 (NOT an opacity dim of

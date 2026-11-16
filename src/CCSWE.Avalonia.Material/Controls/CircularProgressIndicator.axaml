@@ -8,7 +8,7 @@
   Drawn with Avalonia's Arc shape (StartAngle/SweepAngle in degrees; it deflates
   its geometry by StrokeThickness/2 so the stroke never clips, and recomputes from
   Bounds so it scales with Width/Height). Every color/motion ref is a
-  {DynamicResource} so it re-resolves on a Dark<->Light flip. The :indeterminate
+  {DynamicResource} so it re-resolves when the theme variant changes. The :indeterminate
   SweepAngle override beats the template binding the same way ProgressBar.axaml's
   :indeterminate width override does.
 -->

@@ -8,7 +8,7 @@
 
   The label uses TitleSmall/Medium on OnSurface (a bright section header, matching the Android pattern
   this mirrors). Foreground/font are setters TemplateBound onto the presenter, so a consumer can restyle
-  per instance. Every color/font ref is a {DynamicResource} so it re-resolves on a Dark<->Light flip.
+  per instance. Every color/font ref is a {DynamicResource} so it re-resolves when the theme variant changes.
 -->
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

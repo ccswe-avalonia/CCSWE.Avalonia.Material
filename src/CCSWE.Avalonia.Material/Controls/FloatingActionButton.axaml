@@ -1,7 +1,7 @@
 <!--
   Material 3 floating action button as an Avalonia ControlTheme. Every color, radius,
   and motion value is a {DynamicResource} into Tokens.axaml / Motion.axaml - no literals
-  (so the brushes re-resolve when the ThemeVariant flips Dark<->Light at runtime).
+  (so the brushes re-resolve when the theme variant changes at runtime).
 
   Unlike the Button family (single variant axis, one theme swapped per class), the FAB
   has TWO orthogonal axes - Size and Color - so it is one ControlTheme keyed to the type
