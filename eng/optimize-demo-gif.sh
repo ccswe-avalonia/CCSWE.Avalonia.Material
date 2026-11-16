@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #
-# Optimize a raw ShareX capture of the demo gallery tour into the README GIF.
+# Optimize a raw capture of the demo gallery tour (ShareX, or ffmpeg under Xvfb: see
+# docs/wslg-gui-debugging.md) into the README GIF.
 #
 # Capture the tour with:  dotnet run --project src/CCSWE.Avalonia.Material.Demo -- --record
 # then run:               eng/optimize-demo-gif.sh <capture.gif> [output.gif]

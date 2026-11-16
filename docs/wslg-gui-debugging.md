@@ -40,9 +40,16 @@ Xvfb :99 -screen 0 1600x1000x24 -nolisten tcp   # in the BACKGROUND
 ```
 
 There is no window manager, so the window opens at a fixed position and needs no activation.
-The page cross-fade (`TransitioningContentControl`) doesn't finish under Xvfb: clicking a nav
-item leaves both pages blended. Launch once per page with `DEMO_PAGE` instead, and switch
-variants with the footer toggles (they don't animate).
+Wait about a second after a nav click before capturing (the page cross-fade). To record the
+`--record` tour, capture the window region with ffmpeg and convert it for
+`eng/optimize-demo-gif.sh` (window position from `xdotool getwindowgeometry`):
+
+```bash
+ffmpeg -f x11grab -framerate 15 -video_size 1024x768 -i ":99.0+<x>,<y>" tour.mp4
+ffmpeg -ss <start> -to <end> -i tour.mp4 \
+  -vf "fps=5,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=none:diff_mode=rectangle" raw.gif
+SCALE=0.727 eng/optimize-demo-gif.sh raw.gif    # 1024px -> the README's 744px
+```
 
 ---
 
