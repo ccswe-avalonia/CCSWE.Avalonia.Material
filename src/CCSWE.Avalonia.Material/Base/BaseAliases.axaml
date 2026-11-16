@@ -43,7 +43,7 @@
   <!-- Accent / selection -->
   <SolidColorBrush x:Key="ThemeAccentBrush" Color="{DynamicResource PrimaryColor}" />
   <SolidColorBrush x:Key="HighlightBrush" Color="{DynamicResource PrimaryColor}" />
-  <Color x:Key="HighlightForegroundColor">#FFFFFFFF</Color>
+  <SolidColorBrush x:Key="HighlightForegroundBrush" Color="{DynamicResource OnPrimaryColor}" />
 
   <!-- Error -->
   <SolidColorBrush x:Key="ErrorBrush" Color="{DynamicResource ErrorColor}" />

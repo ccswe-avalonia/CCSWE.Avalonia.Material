@@ -3,7 +3,7 @@
 
   <Styles.Resources>
     <!-- M3 calendar date cell: 40dp circular. Default transparent/OnSurface; selected =
-         Primary fill + OnPrimary; today = 1dp Primary ring (when unselected); hover/pressed
+         PrimaryFill disc + OnPrimaryFill; today = 1dp Primary ring (when unselected); hover/pressed
          = OnSurface state layer; inactive (adjacent month) = OnSurfaceVariant; blackout/
          disabled = OnSurface38. -->
     <ControlTheme x:Key="{x:Type CalendarDayButton}" TargetType="CalendarDayButton">
@@ -25,10 +25,10 @@
                     BorderBrush="{DynamicResource Primary}"
                     BorderThickness="1"
                     IsVisible="False" />
-            <!-- Selected: solid Primary disc. -->
+            <!-- Selected: solid PrimaryFill disc. -->
             <Border Name="SelectedBackground"
                     CornerRadius="{DynamicResource CornerRadiusFull}"
-                    Background="{DynamicResource Primary}"
+                    Background="{DynamicResource PrimaryFill}"
                     IsVisible="False" />
             <!-- State layer (OnSurface) for hover/pressed. -->
             <Border Name="StateLayer"
@@ -73,7 +73,7 @@
         <Setter Property="TextElement.Foreground" Value="{DynamicResource Primary}" />
       </Style>
 
-      <!-- Selected (Primary disc + OnPrimary label; ring + state layer recolor onto the disc) -->
+      <!-- Selected (PrimaryFill disc + OnPrimaryFill label; ring + state layer recolor onto the disc) -->
       <Style Selector="^:selected /template/ Border#SelectedBackground">
         <Setter Property="IsVisible" Value="True" />
       </Style>
@@ -81,10 +81,10 @@
         <Setter Property="IsVisible" Value="False" />
       </Style>
       <Style Selector="^:selected /template/ Border#StateLayer">
-        <Setter Property="Background" Value="{DynamicResource OnPrimary}" />
+        <Setter Property="Background" Value="{DynamicResource OnPrimaryFill}" />
       </Style>
       <Style Selector="^:selected /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource OnPrimary}" />
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource OnPrimaryFill}" />
       </Style>
 
       <!-- Inactive (adjacent month) -->

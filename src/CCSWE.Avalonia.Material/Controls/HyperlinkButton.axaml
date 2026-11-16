@@ -1,5 +1,6 @@
-<!-- M3 link: Primary underlined text, state layer (Primary 8% hover / 10% pressed),
-     Hand cursor; visited -> Secondary; disabled -> OnSurface 38%. -->
+<!-- M3 link: Accent underlined text, state layer (Accent 8% hover / 10% pressed),
+     Hand cursor; hover / keyboard focus -> AccentStrong; disabled -> OnSurface 38%.
+     No visited state (M3 defines none). -->
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
@@ -7,7 +8,7 @@
     <ControlTheme x:Key="{x:Type HyperlinkButton}" TargetType="HyperlinkButton">
       <Setter Property="Cursor" Value="Hand" />
       <Setter Property="Background" Value="Transparent" />
-      <Setter Property="Foreground" Value="{DynamicResource Primary}" />
+      <Setter Property="Foreground" Value="{DynamicResource Accent}" />
       <Setter Property="BorderThickness" Value="0" />
       <Setter Property="Padding" Value="4,2" />
       <Setter Property="HorizontalAlignment" Value="Left" />
@@ -20,7 +21,7 @@
         <ControlTemplate>
           <Panel>
             <Border x:Name="PART_StateLayer"
-                    Background="{DynamicResource Primary}"
+                    Background="{DynamicResource Accent}"
                     CornerRadius="{DynamicResource CornerRadiusExtraSmall}"
                     Opacity="0">
               <Border.Transitions>
@@ -34,7 +35,7 @@
                               ContentTemplate="{TemplateBinding ContentTemplate}"
                               Padding="{TemplateBinding Padding}"
                               RecognizesAccessKey="True"
-                              TextElement.Foreground="{DynamicResource Primary}"
+                              TextElement.Foreground="{TemplateBinding Foreground}"
                               HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                               VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
           </Panel>
@@ -47,8 +48,11 @@
       <Style Selector="^:pressed /template/ Border#PART_StateLayer">
         <Setter Property="Opacity" Value="0.10" />
       </Style>
-      <Style Selector="^:visited /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="TextElement.Foreground" Value="{DynamicResource Secondary}" />
+      <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource AccentStrong}" />
+      </Style>
+      <Style Selector="^:focus-visible /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource AccentStrong}" />
       </Style>
       <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
         <Setter Property="TextElement.Foreground" Value="{DynamicResource OnSurface38}" />

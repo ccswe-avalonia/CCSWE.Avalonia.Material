@@ -1,5 +1,5 @@
 <!--
-  Material 3 linear ProgressBar. Indicator = Primary, track = SurfaceVariant,
+  Material 3 linear ProgressBar. Indicator = Primary, track = SurfaceContainerHighest,
   4dp tall, fully rounded. Determinate fills by Value (ProgressBar sizes
   PART_Indicator itself). Indeterminate runs a looping sweep driven by
   ProgressBar.TemplateSettings (ContainerWidth + ContainerAnimation*Position),
@@ -16,7 +16,7 @@
   <Styles.Resources>
 
     <ControlTheme x:Key="{x:Type ProgressBar}" TargetType="ProgressBar">
-      <Setter Property="Background" Value="{DynamicResource SurfaceVariant}" />
+      <Setter Property="Background" Value="{DynamicResource SurfaceContainerHighest}" />
       <Setter Property="Foreground" Value="{DynamicResource Primary}" />
       <Setter Property="MinHeight" Value="4" />
       <Setter Property="CornerRadius" Value="{DynamicResource CornerRadiusFull}" />

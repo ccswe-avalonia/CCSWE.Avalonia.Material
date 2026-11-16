@@ -1,5 +1,5 @@
 <!--
-  Material 3 CheckBox. 18dp box, 2px Outline-variant border when unchecked,
+  Material 3 CheckBox. 18dp box, 2px OnSurfaceVariant border when unchecked,
   fills Primary with an OnPrimary checkmark when checked, 2px corner radius.
   A 40dp circular state layer (the box/primary color at hover .08 / pressed .10)
   sits behind the box. Applied as the default CheckBox theme (no class needed).
