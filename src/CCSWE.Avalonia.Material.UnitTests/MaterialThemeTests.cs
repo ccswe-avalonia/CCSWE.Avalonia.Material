@@ -5,6 +5,7 @@ using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Headless.NUnit;
+using Avalonia.Styling;
 using CCSWE.Avalonia.Material;
 using NUnit.Framework;
 
@@ -12,7 +13,7 @@ namespace CCSWE.Avalonia.Material.UnitTests;
 
 /// <summary>
 /// The theme smoke harness: renders a representative slice of the control surface under
-/// <see cref="MaterialTheme"/> and asserts nothing threw and no binding/resource/template warnings were
+/// <see cref="MaterialTheme"/> in every theme variant and asserts nothing threw and no binding/resource/template warnings were
 /// logged. This is the net for the class of runtime bugs the XAML compiler cannot catch (missing
 /// <c>DynamicResource</c> keys, broken templates, failed bindings).
 /// </summary>
@@ -23,6 +24,8 @@ public class MaterialThemeTests
     [
         ("Button.Filled", () => new Button { Content = "OK", Classes = { "Filled" } }),
         ("Button.Outlined", () => new Button { Content = "OK", Classes = { "Outlined" } }),
+        ("Button.Destructive", () => new Button { Content = "Delete", Classes = { "Destructive" } }),
+        ("HyperlinkButton", () => new HyperlinkButton { Content = "Docs" }),
         ("FloatingActionButton.Regular.Primary", () => new FloatingActionButton { Content = "+" }),
         ("FloatingActionButton.Small.Secondary", () => new FloatingActionButton { Content = "+", Size = FloatingActionButtonSize.Small, Color = FloatingActionButtonColor.Secondary }),
         ("FloatingActionButton.Large.Tertiary", () => new FloatingActionButton { Content = "+", Size = FloatingActionButtonSize.Large, Color = FloatingActionButtonColor.Tertiary }),
@@ -46,35 +49,50 @@ public class MaterialThemeTests
         ("Menu", () => new Menu { Items = { new MenuItem { Header = "File" } } }),
         ("CalendarDatePicker", () => new CalendarDatePicker()),
         ("CommandBar", () => new CommandBar()),
+        ("PipsPager", () => new PipsPager { NumberOfPages = 5, SelectedPageIndex = 1 }),
     ];
 
-    [AvaloniaTest]
-    public void All_themed_controls_render_without_errors()
+    private static readonly ThemeVariant[] Variants =
+    [
+        ThemeVariant.Dark,
+        ThemeVariant.Light,
+        MaterialTheme.DarkHighContrast,
+        MaterialTheme.LightHighContrast,
+    ];
+
+    public class When_The_Theme_Is_Applied : MaterialThemeTests
     {
-        var failures = new List<string>();
-
-        foreach (var (name, factory) in Controls)
+        [AvaloniaTest]
+        public void It_renders_every_themed_control_without_errors()
         {
-            using var sink = CapturingLogSink.Install();
-            Window? window = null;
+            var failures = new List<string>();
 
-            try
+            foreach (var variant in Variants)
             {
-                window = new Window { Content = factory(), SizeToContent = SizeToContent.WidthAndHeight };
-                window.Show();
-            }
-            catch (Exception ex)
-            {
-                failures.Add($"{name}: threw {ex.GetType().Name}: {ex.Message}");
-            }
-            finally
-            {
-                window?.Close();
+                foreach (var (name, factory) in Controls)
+                {
+                    using var sink = CapturingLogSink.Install();
+                    Window? window = null;
+
+                    try
+                    {
+                        window = new Window { RequestedThemeVariant = variant, Content = factory(), SizeToContent = SizeToContent.WidthAndHeight };
+                        window.Show();
+                    }
+                    catch (Exception ex)
+                    {
+                        failures.Add($"{name} ({variant}): threw {ex.GetType().Name}: {ex.Message}");
+                    }
+                    finally
+                    {
+                        window?.Close();
+                    }
+
+                    failures.AddRange(sink.Entries.Select(entry => $"{name} ({variant}): {entry}"));
+                }
             }
 
-            failures.AddRange(sink.Entries.Select(entry => $"{name}: {entry}"));
+            Assert.That(failures, Is.Empty, "Themed controls produced errors:" + Environment.NewLine + string.Join(Environment.NewLine, failures));
         }
-
-        Assert.That(failures, Is.Empty, "Themed controls produced errors:" + Environment.NewLine + string.Join(Environment.NewLine, failures));
     }
 }
