@@ -7,7 +7,7 @@
         <StackPanel Spacing="24" Margin="32,24,32,48">
             <StackPanel Spacing="4">
                 <TextBlock Classes="HeadlineSmall" Text="Colors" />
-                <TextBlock Classes="BodyMedium" Foreground="{DynamicResource OnSurfaceVariant}"
+                <TextBlock Classes="BodyMedium" Foreground="{DynamicResource OnSurfaceVariant}" TextWrapping="Wrap"
                            Text="Color roles from Tokens.axaml in the current theme variant: each container with its on-color, then text roles on surfaces." />
             </StackPanel>
 

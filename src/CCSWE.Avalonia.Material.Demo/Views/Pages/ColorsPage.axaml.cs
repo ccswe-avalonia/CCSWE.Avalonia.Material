@@ -72,8 +72,8 @@ public partial class ColorsPage : GalleryPage
 
         var swatch = new Border
         {
-            Width = 220,
-            Height = 64,
+            Width = 260,
+            MinHeight = 64,
             Margin = new Thickness(0, 0, 12, 12),
             Padding = new Thickness(12),
             BorderThickness = new Thickness(1),
