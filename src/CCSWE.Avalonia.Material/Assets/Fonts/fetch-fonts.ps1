@@ -1,10 +1,10 @@
 # =============================================================================
 # Font acquisition for CCSWE.Avalonia.Material  (run from this Assets/Fonts/ folder)
-# PowerShell equivalent of fetch-fonts.sh — for Windows/.NET desktop devs.
+# PowerShell equivalent of fetch-fonts.sh.
 # =============================================================================
-# Pulls the upstream OFL variable TTFs (DM Sans + Plus Jakarta Sans) + each
-# OFL.txt so the library is self-contained. Families resolve to the names
-# Fonts.axaml references: "Plus Jakarta Sans" and "DM Sans".
+# Downloads the OFL TTFs for every family Fonts.axaml references, plus each
+# OFL.txt, from google/fonts: the variable font where Google publishes one,
+# otherwise the static cuts. Upright only. Re-run to refresh.
 $ErrorActionPreference = "Stop"
 $base = "https://github.com/google/fonts/raw/main/ofl"
 
@@ -16,5 +16,13 @@ Write-Host "Fetching DM Sans..."
 Invoke-WebRequest "$base/dmsans/DMSans%5Bopsz,wght%5D.ttf" -OutFile "DMSans[opsz,wght].ttf"
 Invoke-WebRequest "$base/dmsans/OFL.txt"                   -OutFile "DMSans-OFL.txt"
 
-Write-Host 'Done. Ensure the csproj includes: <AvaloniaResource Include="Assets/Fonts/*.ttf" />'
-Write-Host "Keep the *-OFL.txt files in the repo to satisfy the OFL redistribution clause."
+Write-Host "Fetching DM Mono..."
+Invoke-WebRequest "$base/dmmono/DMMono-Regular.ttf" -OutFile "DMMono-Regular.ttf"
+Invoke-WebRequest "$base/dmmono/DMMono-Medium.ttf"  -OutFile "DMMono-Medium.ttf"
+Invoke-WebRequest "$base/dmmono/OFL.txt"            -OutFile "DMMono-OFL.txt"
+
+Write-Host "Fetching JetBrains Mono..."
+Invoke-WebRequest "$base/jetbrainsmono/JetBrainsMono%5Bwght%5D.ttf" -OutFile "JetBrainsMono[wght].ttf"
+Invoke-WebRequest "$base/jetbrainsmono/OFL.txt"                     -OutFile "JetBrainsMono-OFL.txt"
+
+Write-Host "Done. Keep the *-OFL.txt files in the repo to satisfy the OFL redistribution clause."

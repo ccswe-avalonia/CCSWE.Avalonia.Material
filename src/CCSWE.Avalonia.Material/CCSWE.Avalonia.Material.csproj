@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <IsPackable>true</IsPackable>
-    <Description>A standalone Material 3 theme for Avalonia 12 — a Dark/Light color system, the M3 type scale, motion, embedded brand fonts (DM Sans, Plus Jakarta Sans), and M3 control themes for the full control set. Depends only on Avalonia core (no Fluent/Simple base theme required); add &lt;theme:MaterialTheme /&gt; to Application.Styles.</Description>
-    <PackageTags>avalonia;theme;material-design;material-3;m3;ui;xaml;dark-theme;controls</PackageTags>
+    <Description>A standalone Material 3 theme for Avalonia 12 — a color system with Dark, Light and high-contrast variants, the M3 type scale, motion, embedded fonts (DM Sans, Plus Jakarta Sans, DM Mono, JetBrains Mono), and M3 control themes for the full control set. Depends only on Avalonia core (no Fluent/Simple base theme required); add &lt;theme:MaterialTheme /&gt; to Application.Styles.</Description>
+    <PackageTags>avalonia;theme;material-design;material-3;m3;ui;xaml;dark-theme;high-contrast;accessibility;controls</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>ccswe-logo.png</PackageIcon>
   </PropertyGroup>
