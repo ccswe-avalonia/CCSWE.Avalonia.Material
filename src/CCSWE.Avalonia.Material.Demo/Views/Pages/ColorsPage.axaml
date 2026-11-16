@@ -1,0 +1,24 @@
+<views:GalleryPage xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:views="using:CCSWE.Avalonia.Material.Demo.Views"
+             xmlns:vm="using:CCSWE.Avalonia.Material.Demo.ViewModels"
+             x:Class="CCSWE.Avalonia.Material.Demo.Views.Pages.ColorsPage"
+             x:DataType="vm:MainWindowViewModel">
+        <StackPanel Spacing="24" Margin="32,24,32,48">
+            <StackPanel Spacing="4">
+                <TextBlock Classes="HeadlineSmall" Text="Colors" />
+                <TextBlock Classes="BodyMedium" Foreground="{DynamicResource OnSurfaceVariant}"
+                           Text="Color roles from Tokens.axaml in the current theme variant: each container with its on-color, then text roles on surfaces." />
+            </StackPanel>
+
+            <StackPanel Spacing="8">
+                <TextBlock Classes="LabelLarge" Foreground="{DynamicResource Primary}" Text="CONTAINERS" />
+                <WrapPanel x:Name="Pairs" Orientation="Horizontal" />
+            </StackPanel>
+
+            <StackPanel Spacing="8">
+                <TextBlock Classes="LabelLarge" Foreground="{DynamicResource Primary}" Text="TEXT ON SURFACES" />
+                <WrapPanel x:Name="TextOnSurfaces" Orientation="Horizontal" />
+            </StackPanel>
+        </StackPanel>
+</views:GalleryPage>

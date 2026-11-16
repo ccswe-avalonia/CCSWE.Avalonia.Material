@@ -44,9 +44,11 @@ public partial class MainWindow : Window
         }
     }
 
+    private static ThemeVariant CurrentVariant => Application.Current?.RequestedThemeVariant ?? ThemeVariant.Dark;
+
     // Hands-free gallery tour used to capture the README GIF: after a start delay (to arm an
-    // external recorder), walk every section top→bottom with a smooth slow scroll, switch
-    // Dark→Light, and repeat the pass. Drives the same nav/theme controls a user would.
+    // external recorder), walk every section top→bottom with a smooth slow scroll in each theme
+    // variant, and repeat the pass. Drives the same nav/theme controls a user would.
     private async void OnRecordLoaded(object? sender, RoutedEventArgs e)
     {
         if (_options is not { Record: true } || _tourStarted)
@@ -58,11 +60,32 @@ public partial class MainWindow : Window
         await RunTourAsync(_options);
     }
 
-    // Sun/moon theme toggle. The glyph shows the CURRENT theme (moon = dark, sun = light).
+    private static bool IsHighContrast(ThemeVariant variant) =>
+        variant == MaterialTheme.DarkHighContrast || variant == MaterialTheme.LightHighContrast;
+
+    private static bool IsLight(ThemeVariant variant) => (variant.InheritVariant ?? variant) == ThemeVariant.Light;
+
+    private static ThemeVariant Variant(bool light, bool highContrast) => (light, highContrast) switch
+    {
+        (false, false) => ThemeVariant.Dark,
+        (true, false) => ThemeVariant.Light,
+        (false, true) => MaterialTheme.DarkHighContrast,
+        (true, true) => MaterialTheme.LightHighContrast,
+    };
+
+    // Sun/moon theme toggle: flips light/dark and keeps the contrast setting. The glyph shows
+    // the CURRENT theme (moon = dark, sun = light).
     private void OnThemeToggleClick(object? sender, RoutedEventArgs e)
     {
-        var goingLight = Application.Current?.RequestedThemeVariant != ThemeVariant.Light;
-        SetTheme(goingLight ? ThemeVariant.Light : ThemeVariant.Dark);
+        var current = CurrentVariant;
+        SetTheme(Variant(!IsLight(current), IsHighContrast(current)));
+    }
+
+    // High-contrast toggle: flips high contrast and keeps light/dark.
+    private void OnContrastToggleClick(object? sender, RoutedEventArgs e)
+    {
+        var current = CurrentVariant;
+        SetTheme(Variant(IsLight(current), !IsHighContrast(current)));
     }
 
     // Normal/Compact density toggle. Flips MaterialTheme.DensityStyle, which re-resolves
@@ -121,7 +144,7 @@ public partial class MainWindow : Window
 
         do
         {
-            foreach (var variant in new[] { ThemeVariant.Dark, ThemeVariant.Light })
+            foreach (var variant in new[] { ThemeVariant.Dark, ThemeVariant.Light, MaterialTheme.DarkHighContrast, MaterialTheme.LightHighContrast })
             {
                 SetTheme(variant);
                 await Task.Delay(400);
@@ -156,7 +179,7 @@ public partial class MainWindow : Window
         }
 
         app.RequestedThemeVariant = variant;
-        ThemeIcon.Data = (Geometry)this.FindResource(variant == ThemeVariant.Light ? "IconSun" : "IconMoon")!;
+        ThemeIcon.Data = (Geometry)this.FindResource(IsLight(variant) ? "IconSun" : "IconMoon")!;
     }
 
     private static async Task SmoothScrollToBottomAsync(ScrollViewer scroll, DemoOptions options)
