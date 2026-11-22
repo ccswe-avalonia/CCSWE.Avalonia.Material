@@ -47,13 +47,14 @@ Verdict key: **✓** matches M3 · **⚠** minor/intentional deviation · **✗*
 | Control | Dimension | Current | M3 | Verdict | Note |
 |---|---|---|---|---|---|
 | CheckBox | box / border / corner | 18 / 2 / 2 | 18 / 2 / 2 | ✓ | |
+| CheckBox | check / dash glyph | 18 frame, centered | 18, centered | ✓ | |
 | CheckBox | state layer | 40 (r20) | 40 | ✓ | M3 state layer 40; recommended hit-target 48 |
 | CheckBox | touch target | 40 | 48 (min) | ⚠ | 40 hit area is below M3's 48 recommendation |
 | RadioButton | outer / inner dot | 20 / 10 | 20 / 10 | ✓ | |
 | RadioButton | state layer | 40 (r20) | 40 | ✓ | |
 | RadioButton | touch target | 40 | 48 (min) | ⚠ | same 40-vs-48 note as CheckBox |
 | ToggleSwitch | track | 52×32 (r16, 2 outline) | 52×32 | ✓ | exact M3 switch — large by spec |
-| ToggleSwitch | thumb off→on | 16→24 | 16→24 | ✓ | (28 pressed not implemented — minor) |
+| ToggleSwitch | thumb off→on | 16→24, centered 16 from each end | 16→24 | ✓ | (28 pressed not implemented — #69) |
 
 ## Lists, menus, items, tabs
 

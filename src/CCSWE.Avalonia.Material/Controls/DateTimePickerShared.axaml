@@ -96,18 +96,10 @@
     <Setter Property="IsVisible" Value="False" />
     <Setter Property="Content">
       <Template>
-        <Viewbox Width="16"
-                 Height="16"
-                 HorizontalAlignment="Center"
-                 VerticalAlignment="Center">
-          <Path Data="{DynamicResource Material_IconKeyboardArrowUp}"
-                Width="960" Height="960"
-                Fill="{Binding $parent[RepeatButton].Foreground}">
-            <Path.RenderTransform>
-              <TranslateTransform Y="960" />
-            </Path.RenderTransform>
-          </Path>
-        </Viewbox>
+        <PathIcon Theme="{DynamicResource Material_SymbolTheme}"
+                  Width="20" Height="20"
+                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                  Data="{DynamicResource Material_IconKeyboardArrowUp}" />
       </Template>
     </Setter>
   </ControlTheme>
@@ -123,18 +115,10 @@
     <Setter Property="IsVisible" Value="False" />
     <Setter Property="Content">
       <Template>
-        <Viewbox Width="16"
-                 Height="16"
-                 HorizontalAlignment="Center"
-                 VerticalAlignment="Center">
-          <Path Data="{DynamicResource Material_IconKeyboardArrowDown}"
-                Width="960" Height="960"
-                Fill="{Binding $parent[RepeatButton].Foreground}">
-            <Path.RenderTransform>
-              <TranslateTransform Y="960" />
-            </Path.RenderTransform>
-          </Path>
-        </Viewbox>
+        <PathIcon Theme="{DynamicResource Material_SymbolTheme}"
+                  Width="20" Height="20"
+                  HorizontalAlignment="Center" VerticalAlignment="Center"
+                  Data="{DynamicResource Material_IconKeyboardArrowDown}" />
       </Template>
     </Setter>
   </ControlTheme>

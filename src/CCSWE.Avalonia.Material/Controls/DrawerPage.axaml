@@ -203,6 +203,7 @@
                               ToolTip.Tip="Toggle navigation drawer">
                   <Panel>
                     <PathIcon
+                      Theme="{DynamicResource Material_SymbolTheme}"
                       IsVisible="{Binding DrawerIcon, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNull}}"
                       Data="{DynamicResource Material_IconMenu}"
                       HorizontalAlignment="Center"
@@ -255,6 +256,7 @@
                                   ToolTip.Tip="Toggle navigation drawer">
                       <Panel>
                         <PathIcon
+                          Theme="{DynamicResource Material_SymbolTheme}"
                           IsVisible="{Binding DrawerIcon, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNull}}"
                           Data="{DynamicResource Material_IconMenu}"
                           HorizontalAlignment="Center"
@@ -296,6 +298,7 @@
                                   ToolTip.Tip="Toggle navigation drawer">
                       <Panel>
                         <PathIcon
+                          Theme="{DynamicResource Material_SymbolTheme}"
                           IsVisible="{Binding DrawerIcon, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNull}}"
                           Data="{DynamicResource Material_IconMenu}"
                           HorizontalAlignment="Center"

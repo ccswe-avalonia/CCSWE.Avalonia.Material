@@ -26,16 +26,11 @@
             <Border x:Name="Box" Width="18" Height="18" CornerRadius="2"
                     BorderThickness="2" BorderBrush="{DynamicResource OnSurfaceVariant}"
                     Background="Transparent">
-              <Viewbox Width="18" Height="18">
-                <Path x:Name="CheckGlyph"
-                      Width="960" Height="960"
-                      Fill="{DynamicResource OnPrimary}"
-                      Data="{DynamicResource Material_IconCheck}" IsVisible="False">
-                  <Path.RenderTransform>
-                    <TranslateTransform Y="960" />
-                  </Path.RenderTransform>
-                </Path>
-              </Viewbox>
+              <!-- 18px glyph frame over the whole box (the negative margin offsets the 2px border) -->
+              <PathIcon x:Name="CheckGlyph" Theme="{DynamicResource Material_SymbolTheme}"
+                        Width="18" Height="18" Margin="-2"
+                        Foreground="{DynamicResource OnPrimary}"
+                        Data="{DynamicResource Material_IconCheck}" IsVisible="False" />
             </Border>
           </Panel>
           <ContentPresenter Grid.Column="1" x:Name="PART_ContentPresenter"
@@ -50,7 +45,7 @@
       <Setter Property="Background" Value="{DynamicResource Primary}" />
       <Setter Property="BorderBrush" Value="{DynamicResource Primary}" />
     </Style>
-    <Style Selector="^:checked /template/ Path#CheckGlyph">
+    <Style Selector="^:checked /template/ PathIcon#CheckGlyph">
       <Setter Property="IsVisible" Value="True" />
     </Style>
     <Style Selector="^:checked /template/ Border#StateLayer">
@@ -62,7 +57,7 @@
       <Setter Property="Background" Value="{DynamicResource Primary}" />
       <Setter Property="BorderBrush" Value="{DynamicResource Primary}" />
     </Style>
-    <Style Selector="^:indeterminate /template/ Path#CheckGlyph">
+    <Style Selector="^:indeterminate /template/ PathIcon#CheckGlyph">
       <Setter Property="IsVisible" Value="True" />
       <Setter Property="Data" Value="{DynamicResource Material_IconRemove}" />
     </Style>
@@ -86,8 +81,8 @@
     <Style Selector="^:disabled /template/ Border#Box">
       <Setter Property="BorderBrush" Value="{DynamicResource OnSurface12}" />
     </Style>
-    <Style Selector="^:disabled /template/ Path#CheckGlyph">
-      <Setter Property="Fill" Value="{DynamicResource OnSurface38}" />
+    <Style Selector="^:disabled /template/ PathIcon#CheckGlyph">
+      <Setter Property="Foreground" Value="{DynamicResource OnSurface38}" />
     </Style>
     <Style Selector="^:checked:disabled /template/ Border#Box, ^:indeterminate:disabled /template/ Border#Box">
       <Setter Property="Background" Value="{DynamicResource OnSurface12}" />

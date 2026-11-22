@@ -11,6 +11,7 @@
       <Setter Property="Content">
         <Template>
           <PathIcon Name="PART_Icon"
+                    Theme="{DynamicResource Material_SymbolTheme}"
                     Data="{DynamicResource Material_IconRefresh}"
                     Width="24"
                     Height="24" />

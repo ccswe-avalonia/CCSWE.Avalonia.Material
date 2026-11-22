@@ -93,6 +93,7 @@
   <StyleInclude Source="avares://CCSWE.Avalonia.Material/Controls/ItemsControl.axaml" />
   <StyleInclude Source="avares://CCSWE.Avalonia.Material/Controls/Label.axaml" />
   <StyleInclude Source="avares://CCSWE.Avalonia.Material/Controls/ListBox.axaml" />
+  <StyleInclude Source="avares://CCSWE.Avalonia.Material/Controls/MaterialSymbolIcon.axaml" />
   <StyleInclude Source="avares://CCSWE.Avalonia.Material/Controls/Menu.axaml" />
   <StyleInclude Source="avares://CCSWE.Avalonia.Material/Controls/NavigationPage.axaml" />
   <StyleInclude Source="avares://CCSWE.Avalonia.Material/Controls/NotificationCard.axaml" />

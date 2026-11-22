@@ -15,8 +15,9 @@
 
     Keys are uniquely prefixed Material_Icon* so consuming apps never collide with these
     resources and can opt in to OVERRIDE a glyph by redefining the same key downstream
-    (control themes reference them via {DynamicResource}). Reference from a Path with
-    Stretch="Uniform" + Fill (these are filled single-color paths, not strokes).
+    (control themes reference them via {DynamicResource}). Render with
+    <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{DynamicResource Material_Icon*}"/>
+    (Controls/MaterialSymbolIcon.axaml), which keeps the 960 frame's padding.
   -->
 
   <StreamGeometry x:Key="Material_IconArrowBack">m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z</StreamGeometry>

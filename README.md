@@ -88,8 +88,9 @@ depends only on Avalonia core. **No `<FluentTheme/>` or other base theme is requ
 - **Icons:** the theme's glyphs are [Google Material Symbols](https://fonts.google.com/icons)
   (Outlined), shipped as `StreamGeometry` resources keyed `Material_Icon*`
   (e.g. `Material_IconClose`, `Material_IconChevronRight`). Use any in your own UI via
-  `<PathIcon Data="{DynamicResource Material_IconMenu}" />`, or override one for your app
-  by redefining the same key downstream.
+  `<PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{DynamicResource Material_IconMenu}" />`
+  (`Material_SymbolTheme` keeps Material's icon padding; size it to the slot, 24 by default),
+  or override one for your app by redefining the same key downstream.
 
 ### Switching theme variant
 

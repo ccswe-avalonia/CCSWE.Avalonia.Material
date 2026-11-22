@@ -19,10 +19,10 @@
 
     <Window.Resources>
         <!-- Nav + chrome glyphs: Google Material Symbols (Outlined), sourced as path data.
-             Material Symbols uses a 0 -960 960 960 viewBox; PathIcon wraps the Path in a
-             Viewbox + Stretch=Uniform so they scale to 24dp, and Path.Fill=Foreground lets
-             M3NavigationDrawerItem recolor them on :selected. These are DEMO-ONLY glyphs -
-             they are not part of the theme's Material_Icon* resource set. -->
+             Rendered with Material_SymbolTheme (full 960 frame), whose Path.Fill=Foreground lets
+             M3NavigationDrawerItem recolor them on :selected. IconButtons uses a 24-unit frame,
+             so it stays on the default PathIcon theme. These are DEMO-ONLY glyphs - they are
+             not part of the theme's Material_Icon* resource set. -->
         <StreamGeometry x:Key="IconTypography">M420-160v-520H200v-120h560v120H540v520H420Z</StreamGeometry>
         <StreamGeometry x:Key="IconButtons">M4 17q-.825 0-1.412-.587Q2 15.825 2 15V9q0-.825.588-1.413Q3.175 7 4 7h16q.825 0 1.413.587Q22 8.175 22 9v6q0 .825-.587 1.413Q20.825 17 20 17h-1v-2h1V9H4v6h6v2Zm10.5 2-1.1-2.4-2.4-1.1 2.4-1.1 1.1-2.4 1.1 2.4 2.4 1.1-2.4 1.1Zm2.5-5-.625-1.375L15 12l1.375-.625L17 10l.625 1.375L19 12l-1.375.625Z</StreamGeometry>
         <StreamGeometry x:Key="IconInputs">M160-160q-33 0-56.5-23.5T80-240v-120h80v120h640v-480H160v120H80v-120q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm300-140-56-58 83-82H80v-80h407l-83-82 56-58 180 180-180 180Z</StreamGeometry>
@@ -101,7 +101,7 @@
                      IsVisible="{Binding !IsRail}">
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal" Spacing="12">
-                        <PathIcon Data="{StaticResource IconTypography}" Width="24" Height="24" />
+                        <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconTypography}" Width="24" Height="24" />
                         <TextBlock Classes="LabelLarge" Text="Typography" VerticalAlignment="Center" />
                     </StackPanel>
                 </ListBoxItem>
@@ -113,55 +113,55 @@
                 </ListBoxItem>
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal" Spacing="12">
-                        <PathIcon Data="{StaticResource IconInputs}" Width="24" Height="24" />
+                        <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconInputs}" Width="24" Height="24" />
                         <TextBlock Classes="LabelLarge" Text="Inputs" VerticalAlignment="Center" />
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal" Spacing="12">
-                        <PathIcon Data="{StaticResource IconDateTime}" Width="24" Height="24" />
+                        <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconDateTime}" Width="24" Height="24" />
                         <TextBlock Classes="LabelLarge" Text="Date / Time" VerticalAlignment="Center" />
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal" Spacing="12">
-                        <PathIcon Data="{StaticResource IconSelection}" Width="24" Height="24" />
+                        <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconSelection}" Width="24" Height="24" />
                         <TextBlock Classes="LabelLarge" Text="Selection" VerticalAlignment="Center" />
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal" Spacing="12">
-                        <PathIcon Data="{StaticResource IconCollections}" Width="24" Height="24" />
+                        <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconCollections}" Width="24" Height="24" />
                         <TextBlock Classes="LabelLarge" Text="Collections" VerticalAlignment="Center" />
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal" Spacing="12">
-                        <PathIcon Data="{StaticResource IconFeedback}" Width="24" Height="24" />
+                        <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconFeedback}" Width="24" Height="24" />
                         <TextBlock Classes="LabelLarge" Text="Feedback" VerticalAlignment="Center" />
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal" Spacing="12">
-                        <PathIcon Data="{StaticResource IconTabs}" Width="24" Height="24" />
+                        <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconTabs}" Width="24" Height="24" />
                         <TextBlock Classes="LabelLarge" Text="Tabs" VerticalAlignment="Center" />
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal" Spacing="12">
-                        <PathIcon Data="{StaticResource IconContainers}" Width="24" Height="24" />
+                        <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconContainers}" Width="24" Height="24" />
                         <TextBlock Classes="LabelLarge" Text="Containers" VerticalAlignment="Center" />
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal" Spacing="12">
-                        <PathIcon Data="{StaticResource IconIcons}" Width="24" Height="24" />
+                        <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconIcons}" Width="24" Height="24" />
                         <TextBlock Classes="LabelLarge" Text="Icons" VerticalAlignment="Center" />
                     </StackPanel>
                 </ListBoxItem>
                 <ListBoxItem>
                     <StackPanel Orientation="Horizontal" Spacing="12">
-                        <PathIcon Data="{StaticResource IconColors}" Width="24" Height="24" />
+                        <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconColors}" Width="24" Height="24" />
                         <TextBlock Classes="LabelLarge" Text="Colors" VerticalAlignment="Center" />
                     </StackPanel>
                 </ListBoxItem>
@@ -169,17 +169,17 @@
             <ListBox x:Name="RailList" Classes="NavigationRail" VerticalAlignment="Top"
                      IsVisible="{Binding IsRail}"
                      SelectedIndex="{Binding #NavList.SelectedIndex, Mode=TwoWay}">
-                <ListBoxItem ToolTip.Tip="Typography"><PathIcon Data="{StaticResource IconTypography}" Width="24" Height="24" /></ListBoxItem>
+                <ListBoxItem ToolTip.Tip="Typography"><PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconTypography}" Width="24" Height="24" /></ListBoxItem>
                 <ListBoxItem ToolTip.Tip="Buttons"><PathIcon Data="{StaticResource IconButtons}" Width="24" Height="24" /></ListBoxItem>
-                <ListBoxItem ToolTip.Tip="Inputs"><PathIcon Data="{StaticResource IconInputs}" Width="24" Height="24" /></ListBoxItem>
-                <ListBoxItem ToolTip.Tip="Date / Time"><PathIcon Data="{StaticResource IconDateTime}" Width="24" Height="24" /></ListBoxItem>
-                <ListBoxItem ToolTip.Tip="Selection"><PathIcon Data="{StaticResource IconSelection}" Width="24" Height="24" /></ListBoxItem>
-                <ListBoxItem ToolTip.Tip="Collections"><PathIcon Data="{StaticResource IconCollections}" Width="24" Height="24" /></ListBoxItem>
-                <ListBoxItem ToolTip.Tip="Feedback"><PathIcon Data="{StaticResource IconFeedback}" Width="24" Height="24" /></ListBoxItem>
-                <ListBoxItem ToolTip.Tip="Tabs"><PathIcon Data="{StaticResource IconTabs}" Width="24" Height="24" /></ListBoxItem>
-                <ListBoxItem ToolTip.Tip="Containers"><PathIcon Data="{StaticResource IconContainers}" Width="24" Height="24" /></ListBoxItem>
-                <ListBoxItem ToolTip.Tip="Icons"><PathIcon Data="{StaticResource IconIcons}" Width="24" Height="24" /></ListBoxItem>
-                <ListBoxItem ToolTip.Tip="Colors"><PathIcon Data="{StaticResource IconColors}" Width="24" Height="24" /></ListBoxItem>
+                <ListBoxItem ToolTip.Tip="Inputs"><PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconInputs}" Width="24" Height="24" /></ListBoxItem>
+                <ListBoxItem ToolTip.Tip="Date / Time"><PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconDateTime}" Width="24" Height="24" /></ListBoxItem>
+                <ListBoxItem ToolTip.Tip="Selection"><PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconSelection}" Width="24" Height="24" /></ListBoxItem>
+                <ListBoxItem ToolTip.Tip="Collections"><PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconCollections}" Width="24" Height="24" /></ListBoxItem>
+                <ListBoxItem ToolTip.Tip="Feedback"><PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconFeedback}" Width="24" Height="24" /></ListBoxItem>
+                <ListBoxItem ToolTip.Tip="Tabs"><PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconTabs}" Width="24" Height="24" /></ListBoxItem>
+                <ListBoxItem ToolTip.Tip="Containers"><PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconContainers}" Width="24" Height="24" /></ListBoxItem>
+                <ListBoxItem ToolTip.Tip="Icons"><PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconIcons}" Width="24" Height="24" /></ListBoxItem>
+                <ListBoxItem ToolTip.Tip="Colors"><PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconColors}" Width="24" Height="24" /></ListBoxItem>
             </ListBox>
             </Panel>
         </DrawerPage.Drawer>
@@ -195,20 +195,20 @@
                                 IsVisible="{Binding !IsRail}">
                         <Button x:Name="ThemeToggleBtn" Classes="Icon"
                                 Click="OnThemeToggleClick" ToolTip.Tip="Toggle light / dark theme">
-                            <PathIcon x:Name="ThemeIcon" Data="{StaticResource IconMoon}" Width="24" Height="24" />
+                            <PathIcon Theme="{DynamicResource Material_SymbolTheme}" x:Name="ThemeIcon" Data="{StaticResource IconMoon}" Width="24" Height="24" />
                         </Button>
                         <Button x:Name="ContrastToggleBtn" Classes="Icon"
                                 Click="OnContrastToggleClick" ToolTip.Tip="Toggle high contrast">
-                            <PathIcon Data="{StaticResource IconContrast}" Width="24" Height="24" />
+                            <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconContrast}" Width="24" Height="24" />
                         </Button>
                         <Button x:Name="DensityToggleBtn" Classes="Icon"
                                 Click="OnDensityToggleClick" ToolTip.Tip="Toggle normal / compact density">
-                            <PathIcon Data="{StaticResource IconRows}" Width="24" Height="24" />
+                            <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconRows}" Width="24" Height="24" />
                         </Button>
                     </StackPanel>
                     <Button x:Name="RailToggleBtn" Classes="Icon" HorizontalAlignment="Right"
                             Click="OnToggleRail" ToolTip.Tip="Collapse / expand navigation">
-                        <PathIcon x:Name="CollapseChevron" Data="{StaticResource IconCaretLeft}"
+                        <PathIcon Theme="{DynamicResource Material_SymbolTheme}" x:Name="CollapseChevron" Data="{StaticResource IconCaretLeft}"
                                   Width="24" Height="24" RenderTransformOrigin="50%,50%" />
                     </Button>
                 </Panel>

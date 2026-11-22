@@ -106,14 +106,12 @@
                         Padding="8,0"
                         ToolTip.Tip="{x:Null}">
                   <Panel Background="Transparent">
-                    <Path Data="{DynamicResource Material_IconArrowBack}"
-                          x:Name="PART_BackButtonDefaultIcon"
-                          Fill="{DynamicResource NavigationBarForeground}"
-                          Width="24"
-                          Height="24"
-                          Stretch="Uniform"
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Center" />
+                    <PathIcon Data="{DynamicResource Material_IconArrowBack}"
+                              x:Name="PART_BackButtonDefaultIcon"
+                              Theme="{DynamicResource Material_SymbolTheme}"
+                              Foreground="{DynamicResource NavigationBarForeground}"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center" />
                     <ContentPresenter
                       x:Name="PART_BackButtonContentPresenter"
                       VerticalAlignment="Center"

@@ -1,5 +1,8 @@
+using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Headless.NUnit;
@@ -11,6 +14,8 @@ namespace CCSWE.Avalonia.Material.UnitTests;
 [SuppressMessage("ReSharper", "InconsistentNaming")]
 public class DensityTests
 {
+    private static readonly Regex CompactKey = new(@"x:Key=""(\w+)Compact""", RegexOptions.Compiled);
+
     private static MaterialTheme Theme => Application.Current!.Styles.OfType<MaterialTheme>().First();
 
     // Lay a control out in a window under the given density and return its rendered height.
@@ -171,6 +176,42 @@ public class DensityTests
 
             Assert.That(HeightUnder(classed, DensityStyle.Normal), Is.EqualTo(48));
             Assert.That(HeightUnder(new TextBox(), DensityStyle.Normal), Is.EqualTo(56));
+        }
+    }
+
+    public class When_Compact_Keys_Are_Defined : DensityTests
+    {
+        // Dimensions.axaml's *Compact keys feed the per-control .Compact class; DensityStyles/Compact.axaml
+        // overrides the base keys for theme-level Compact. The two must agree.
+        [AvaloniaTest]
+        public void It_matches_each_compact_class_value_to_the_theme_level_compact_value()
+        {
+            var keys = CompactKey.Matches(EmbeddedXaml.Read("Dimensions.axaml")).Select(match => match.Groups[1].Value).ToList();
+            var mismatches = new List<string>();
+
+            try
+            {
+                foreach (var key in keys)
+                {
+                    Theme.DensityStyle = DensityStyle.Normal;
+                    ((IResourceNode)Theme).TryGetResource($"{key}Compact", null, out var classValue);
+
+                    Theme.DensityStyle = DensityStyle.Compact;
+                    ((IResourceNode)Theme).TryGetResource(key, null, out var densityValue);
+
+                    if (!Equals(classValue, densityValue))
+                    {
+                        mismatches.Add($"{key}Compact = {classValue}, {key} (Compact) = {densityValue}");
+                    }
+                }
+            }
+            finally
+            {
+                Theme.DensityStyle = DensityStyle.Normal;
+            }
+
+            Assert.That(keys, Is.Not.Empty);
+            Assert.That(mismatches, Is.Empty, string.Join(Environment.NewLine, mismatches));
         }
     }
 }

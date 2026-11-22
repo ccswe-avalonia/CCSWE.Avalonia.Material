@@ -29,7 +29,7 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     Margin="4">
-              <PathIcon Width="12" Height="12" Data="{DynamicResource Material_IconChevronLeft}" />
+              <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{DynamicResource Material_IconChevronLeft}" />
             </Button>
 
             <ListBox Name="PART_PipsPagerList"
@@ -110,7 +110,7 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     Margin="4">
-              <PathIcon Width="12" Height="12" Data="{DynamicResource Material_IconChevronRight}" />
+              <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{DynamicResource Material_IconChevronRight}" />
             </Button>
           </StackPanel>
         </ControlTemplate>

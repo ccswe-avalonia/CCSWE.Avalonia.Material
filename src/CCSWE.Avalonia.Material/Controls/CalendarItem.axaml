@@ -39,11 +39,11 @@
                     <Setter Property="Height" Value="32" />
                     <Setter Property="Width" Value="32" />
                   </Style>
-                  <Style Selector="Button.CalendarNavigation > Path">
-                    <Setter Property="Fill" Value="{DynamicResource OnSurfaceVariant}" />
+                  <Style Selector="Button.CalendarNavigation PathIcon">
+                    <Setter Property="Foreground" Value="{DynamicResource OnSurfaceVariant}" />
                   </Style>
-                  <Style Selector="Button.CalendarNavigation:pointerover > Path">
-                    <Setter Property="Fill" Value="{DynamicResource OnSurface}" />
+                  <Style Selector="Button.CalendarNavigation:pointerover PathIcon">
+                    <Setter Property="Foreground" Value="{DynamicResource OnSurface}" />
                   </Style>
 
                   <Style Selector="Button#PART_HeaderButton">
@@ -61,12 +61,10 @@
                         HorizontalAlignment="Left"
                         Classes="CalendarHeader CalendarNavigation"
                         IsVisible="False">
-                  <Path Width="6"
-                        Height="10"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Data="{DynamicResource Material_IconChevronLeft}"
-                        Stretch="Uniform" />
+                  <PathIcon Theme="{DynamicResource Material_SymbolTheme}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Data="{DynamicResource Material_IconChevronLeft}" />
                 </Button>
 
                 <Button Name="PART_HeaderButton"
@@ -81,12 +79,10 @@
                         HorizontalAlignment="Right"
                         Classes="CalendarHeader CalendarNavigation"
                         IsVisible="False">
-                  <Path Width="6"
-                        Height="10"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Data="{DynamicResource Material_IconChevronRight}"
-                        Stretch="Uniform" />
+                  <PathIcon Theme="{DynamicResource Material_SymbolTheme}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Data="{DynamicResource Material_IconChevronRight}" />
                 </Button>
 
                 <Grid Name="PART_MonthView"
