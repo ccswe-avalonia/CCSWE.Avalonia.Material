@@ -30,17 +30,17 @@
             </Border>
             <Grid ColumnDefinitions="*,Auto" Margin="{TemplateBinding Padding}">
               <ContentPresenter Grid.Column="0" Content="{TemplateBinding Content}" VerticalAlignment="Center" />
-              <Path x:Name="Chevron" Grid.Column="1" Width="12" Height="8" Stretch="Uniform"
-                    Fill="{DynamicResource OnSurfaceVariant}" Data="{DynamicResource Material_IconExpandMore}"
-                    VerticalAlignment="Center" RenderTransformOrigin="50%,50%" Margin="16,0,0,0">
-                <Path.Transitions>
+              <PathIcon x:Name="Chevron" Grid.Column="1" Theme="{DynamicResource Material_SymbolTheme}" Width="20" Height="20"
+                        Foreground="{DynamicResource OnSurfaceVariant}" Data="{DynamicResource Material_IconExpandMore}"
+                        VerticalAlignment="Center" RenderTransformOrigin="50%,50%" Margin="16,0,0,0">
+                <PathIcon.Transitions>
                   <Transitions>
                     <TransformOperationsTransition Property="RenderTransform"
                                                    Duration="{DynamicResource MotionDurationShort2}"
                                                    Easing="{DynamicResource MotionEasingStandard}" />
                   </Transitions>
-                </Path.Transitions>
-              </Path>
+                </PathIcon.Transitions>
+              </PathIcon>
             </Grid>
           </Panel>
         </ControlTemplate>
@@ -52,15 +52,15 @@
         <Setter Property="Opacity" Value="0.10" />
       </Style>
       <!-- Chevron flips smoothly via the transform-operations transition above. -->
-      <Style Selector="^:checked /template/ Path#Chevron">
+      <Style Selector="^:checked /template/ PathIcon#Chevron">
         <Setter Property="RenderTransform" Value="rotate(180deg)" />
       </Style>
       <!-- Disabled: recolor header label + chevron to OnSurface38 (not an opacity dim). -->
       <Style Selector="^:disabled /template/ ContentPresenter">
         <Setter Property="TextElement.Foreground" Value="{DynamicResource OnSurface38}" />
       </Style>
-      <Style Selector="^:disabled /template/ Path#Chevron">
-        <Setter Property="Fill" Value="{DynamicResource OnSurface38}" />
+      <Style Selector="^:disabled /template/ PathIcon#Chevron">
+        <Setter Property="Foreground" Value="{DynamicResource OnSurface38}" />
       </Style>
     </ControlTheme>
 

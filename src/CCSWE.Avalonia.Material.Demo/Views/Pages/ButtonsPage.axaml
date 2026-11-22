@@ -72,12 +72,12 @@
                     <CommandBar>
                         <CommandBarButton Label="New">
                             <CommandBarButton.Icon>
-                                <PathIcon Data="{StaticResource IconAdd}" />
+                                <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconAdd}" />
                             </CommandBarButton.Icon>
                         </CommandBarButton>
                         <CommandBarButton Label="Save">
                             <CommandBarButton.Icon>
-                                <PathIcon Data="{StaticResource IconSave}" />
+                                <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconSave}" />
                             </CommandBarButton.Icon>
                         </CommandBarButton>
                         <CommandBarSeparator />
@@ -89,12 +89,12 @@
                         <CommandBar.SecondaryCommands>
                             <CommandBarButton Label="Settings">
                                 <CommandBarButton.Icon>
-                                    <PathIcon Data="{StaticResource IconSettings}" />
+                                    <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconSettings}" />
                                 </CommandBarButton.Icon>
                             </CommandBarButton>
                             <CommandBarButton Label="About">
                                 <CommandBarButton.Icon>
-                                    <PathIcon Data="{StaticResource IconInfo}" />
+                                    <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Data="{StaticResource IconInfo}" />
                                 </CommandBarButton.Icon>
                             </CommandBarButton>
                         </CommandBar.SecondaryCommands>
@@ -107,31 +107,31 @@
                     <TextBlock Classes="LabelMedium" Foreground="{DynamicResource OnSurfaceVariant}" Text="COLOR (Primary / Secondary / Tertiary / Surface)" />
                     <WrapPanel>
                         <theme:FloatingActionButton Color="Primary" Margin="0,0,16,16" Command="{Binding FabClickedCommand}">
-                            <PathIcon Width="24" Height="24" Data="{StaticResource IconAdd}" />
+                            <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Width="24" Height="24" Data="{StaticResource IconAdd}" />
                         </theme:FloatingActionButton>
                         <theme:FloatingActionButton Color="Secondary" Margin="0,0,16,16" Command="{Binding FabClickedCommand}">
-                            <PathIcon Width="24" Height="24" Data="{StaticResource IconAdd}" />
+                            <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Width="24" Height="24" Data="{StaticResource IconAdd}" />
                         </theme:FloatingActionButton>
                         <theme:FloatingActionButton Color="Tertiary" Margin="0,0,16,16" Command="{Binding FabClickedCommand}">
-                            <PathIcon Width="24" Height="24" Data="{StaticResource IconAdd}" />
+                            <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Width="24" Height="24" Data="{StaticResource IconAdd}" />
                         </theme:FloatingActionButton>
                         <theme:FloatingActionButton Color="Surface" Margin="0,0,16,16" Command="{Binding FabClickedCommand}">
-                            <PathIcon Width="24" Height="24" Data="{StaticResource IconAdd}" />
+                            <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Width="24" Height="24" Data="{StaticResource IconAdd}" />
                         </theme:FloatingActionButton>
                     </WrapPanel>
                     <TextBlock Classes="LabelMedium" Foreground="{DynamicResource OnSurfaceVariant}" Text="SIZE (Small / Regular / Large) &amp; DISABLED" />
                     <WrapPanel VerticalAlignment="Center">
                         <theme:FloatingActionButton Size="Small" Margin="0,0,16,16" VerticalAlignment="Center" Command="{Binding FabClickedCommand}">
-                            <PathIcon Width="24" Height="24" Data="{StaticResource IconAdd}" />
+                            <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Width="24" Height="24" Data="{StaticResource IconAdd}" />
                         </theme:FloatingActionButton>
                         <theme:FloatingActionButton Size="Regular" Margin="0,0,16,16" VerticalAlignment="Center" Command="{Binding FabClickedCommand}">
-                            <PathIcon Width="24" Height="24" Data="{StaticResource IconAdd}" />
+                            <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Width="24" Height="24" Data="{StaticResource IconAdd}" />
                         </theme:FloatingActionButton>
                         <theme:FloatingActionButton Size="Large" Margin="0,0,16,16" VerticalAlignment="Center" Command="{Binding FabClickedCommand}">
-                            <PathIcon Width="36" Height="36" Data="{StaticResource IconAdd}" />
+                            <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Width="36" Height="36" Data="{StaticResource IconAdd}" />
                         </theme:FloatingActionButton>
                         <theme:FloatingActionButton IsEnabled="False" Margin="0,0,16,16" VerticalAlignment="Center">
-                            <PathIcon Width="24" Height="24" Data="{StaticResource IconAdd}" />
+                            <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Width="24" Height="24" Data="{StaticResource IconAdd}" />
                         </theme:FloatingActionButton>
                     </WrapPanel>
                     <TextBlock Classes="LabelMedium" Foreground="{DynamicResource OnSurfaceVariant}" Text="{Binding FabClicks}" />

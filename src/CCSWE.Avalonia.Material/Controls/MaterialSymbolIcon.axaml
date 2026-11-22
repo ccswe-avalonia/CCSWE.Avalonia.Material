@@ -1,0 +1,36 @@
+<!--
+  PathIcon theme for Material Symbols geometry (Icons.axaml, viewBox 0 -960 960 960). Draws the
+  glyph in its full 960 frame, so it keeps Material's built-in padding and optical centering; the
+  translate moves the frame from y -960..0 into the Path's 0..960 box. Size the icon to the M3 slot
+  (24 standard). Apply with Theme="{DynamicResource Material_SymbolTheme}".
+-->
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  <Styles.Resources>
+
+    <ControlTheme x:Key="Material_SymbolTheme" TargetType="PathIcon">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Width" Value="24" />
+      <Setter Property="Height" Value="24" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Border Background="{TemplateBinding Background}">
+            <Viewbox Stretch="Uniform">
+              <Path x:Name="PART_Glyph"
+                    Width="960" Height="960"
+                    Data="{TemplateBinding Data}"
+                    Fill="{TemplateBinding Foreground}">
+                <Path.RenderTransform>
+                  <TranslateTransform Y="960" />
+                </Path.RenderTransform>
+              </Path>
+            </Viewbox>
+          </Border>
+        </ControlTemplate>
+      </Setter>
+    </ControlTheme>
+
+  </Styles.Resources>
+
+</Styles>

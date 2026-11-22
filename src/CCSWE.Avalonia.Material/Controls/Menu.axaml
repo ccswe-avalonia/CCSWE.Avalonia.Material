@@ -97,9 +97,9 @@
                                 VerticalAlignment="Center" />
               <TextBlock Grid.Column="2" Foreground="{DynamicResource OnSurfaceVariant}" Margin="24,0,0,0"
                          VerticalAlignment="Center" IsVisible="False" />
-              <Path x:Name="PART_ChevronPath" Grid.Column="3" Width="6" Height="10"
-                    Stretch="Uniform" Fill="{DynamicResource OnSurfaceVariant}"
-                    Data="{DynamicResource Material_IconChevronRight}" Margin="16,0,0,0" VerticalAlignment="Center" />
+              <PathIcon x:Name="PART_ChevronPath" Grid.Column="3" Theme="{DynamicResource Material_SymbolTheme}" Width="20" Height="20"
+                        Foreground="{DynamicResource OnSurfaceVariant}"
+                        Data="{DynamicResource Material_IconChevronRight}" Margin="16,0,0,0" VerticalAlignment="Center" />
             </Grid>
             <Popup x:Name="PART_Popup" Placement="Right" IsLightDismissEnabled="False"
                    IsOpen="{TemplateBinding IsSubMenuOpen, Mode=TwoWay}">
@@ -116,7 +116,7 @@
       </Setter>
 
       <!-- hide the submenu chevron when the item has no children -->
-      <Style Selector="^:empty /template/ Path#PART_ChevronPath">
+      <Style Selector="^:empty /template/ PathIcon#PART_ChevronPath">
         <Setter Property="IsVisible" Value="False" />
       </Style>
       <Style Selector="^:selected /template/ Border#StateLayer">
@@ -132,8 +132,8 @@
       <Style Selector="^:disabled /template/ ContentControl#PART_IconPresenter">
         <Setter Property="TextElement.Foreground" Value="{DynamicResource OnSurface38}" />
       </Style>
-      <Style Selector="^:disabled /template/ Path#PART_ChevronPath">
-        <Setter Property="Fill" Value="{DynamicResource OnSurface38}" />
+      <Style Selector="^:disabled /template/ PathIcon#PART_ChevronPath">
+        <Setter Property="Foreground" Value="{DynamicResource OnSurface38}" />
       </Style>
     </ControlTheme>
 

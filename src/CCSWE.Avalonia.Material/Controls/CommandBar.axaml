@@ -297,7 +297,7 @@
                         MinWidth="40"
                         VerticalAlignment="Stretch"
                         IsVisible="{TemplateBinding IsOverflowButtonVisible}">
-                  <PathIcon Width="16" Height="16"
+                  <PathIcon Theme="{DynamicResource Material_SymbolTheme}"
                             Foreground="{TemplateBinding Foreground}"
                             Data="{DynamicResource Material_IconMoreVert}" />
                 </Button>

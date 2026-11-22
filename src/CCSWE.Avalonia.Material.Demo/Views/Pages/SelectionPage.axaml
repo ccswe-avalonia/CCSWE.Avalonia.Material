@@ -7,12 +7,14 @@
         <StackPanel Spacing="24" Margin="32,24,32,48">
             <TextBlock Classes="HeadlineSmall" Text="Selection controls" />
             <Border Classes="Card Outlined">
-                <StackPanel Orientation="Horizontal" Spacing="48">
+                <WrapPanel ItemSpacing="48" LineSpacing="24">
                     <StackPanel Spacing="8">
                         <CheckBox Content="Unchecked" />
                         <CheckBox Content="Checked" IsChecked="True" />
                         <CheckBox Content="Indeterminate" IsThreeState="True" IsChecked="{x:Null}" />
-                        <CheckBox Content="Disabled" IsEnabled="False" IsChecked="True" />
+                        <CheckBox Content="Disabled" IsEnabled="False" />
+                        <CheckBox Content="Disabled checked" IsEnabled="False" IsChecked="True" />
+                        <CheckBox Content="Disabled indeterminate" IsEnabled="False" IsThreeState="True" IsChecked="{x:Null}" />
                     </StackPanel>
                     <StackPanel Spacing="8">
                         <RadioButton GroupName="g" Content="Option one" IsChecked="True" />
@@ -22,8 +24,12 @@
                     <StackPanel Spacing="12">
                         <ToggleSwitch Content="Wireless debugging" />
                         <ToggleSwitch Content="Connect automatically" IsChecked="True" />
+                        <ToggleSwitch Content="Disabled" IsEnabled="False" />
+                        <ToggleSwitch Content="Disabled on" IsEnabled="False" IsChecked="True" />
+                        <ToggleSwitch Classes="Compact" Content=".Compact" />
+                        <ToggleSwitch Classes="Compact" Content=".Compact on" IsChecked="True" />
                     </StackPanel>
-                </StackPanel>
+                </WrapPanel>
             </Border>
         </StackPanel>
 </views:GalleryPage>

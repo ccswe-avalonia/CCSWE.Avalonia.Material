@@ -146,14 +146,14 @@
                           VerticalAlignment="Center" Margin="0,0,6,0"
                           IsVisible="{TemplateBinding ShowButtonSpinner}">
                 <RepeatButton x:Name="PART_IncreaseButton" Theme="{StaticResource CcsweSpinnerButton}">
-                  <Path Width="10" Height="7" Stretch="Uniform"
-                        Fill="{DynamicResource OnSurfaceVariant}"
-                        Data="{DynamicResource Material_IconKeyboardArrowUp}" />
+                  <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Width="20" Height="20"
+                            Foreground="{DynamicResource OnSurfaceVariant}"
+                            Data="{DynamicResource Material_IconKeyboardArrowUp}" />
                 </RepeatButton>
                 <RepeatButton x:Name="PART_DecreaseButton" Theme="{StaticResource CcsweSpinnerButton}">
-                  <Path Width="10" Height="7" Stretch="Uniform"
-                        Fill="{DynamicResource OnSurfaceVariant}"
-                        Data="{DynamicResource Material_IconKeyboardArrowDown}" />
+                  <PathIcon Theme="{DynamicResource Material_SymbolTheme}" Width="20" Height="20"
+                            Foreground="{DynamicResource OnSurfaceVariant}"
+                            Data="{DynamicResource Material_IconKeyboardArrowDown}" />
                 </RepeatButton>
               </StackPanel>
             </Grid>
@@ -183,8 +183,8 @@
       <Style Selector="^:disabled /template/ Border#PART_BorderElement">
         <Setter Property="BorderBrush" Value="{DynamicResource OnSurface12}" />
       </Style>
-      <Style Selector="^:disabled /template/ StackPanel#PART_SpinnerPanel Path">
-        <Setter Property="Fill" Value="{DynamicResource OnSurface38}" />
+      <Style Selector="^:disabled /template/ StackPanel#PART_SpinnerPanel PathIcon">
+        <Setter Property="Foreground" Value="{DynamicResource OnSurface38}" />
       </Style>
     </ControlTheme>
 

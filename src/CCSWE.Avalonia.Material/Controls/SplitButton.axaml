@@ -88,14 +88,14 @@
                       Grid.Column="2"
                       Theme="{StaticResource M3SplitButtonSegment}"
                       CornerRadius="{TemplateBinding CornerRadius, Converter={StaticResource SplitButtonRightCorners}}"
-                      Padding="10,0"
+                      Padding="4,0"
                       HorizontalContentAlignment="Center"
                       VerticalContentAlignment="Center"
                       HorizontalAlignment="Stretch"
                       VerticalAlignment="Stretch"
                       Focusable="False"
                       KeyboardNavigation.IsTabStop="False">
-                <PathIcon Width="12" Height="12"
+                <PathIcon Theme="{DynamicResource Material_SymbolTheme}"
                           Foreground="{DynamicResource OnSecondaryContainer}"
                           Data="{DynamicResource Material_IconArrowDropDown}" />
               </Button>

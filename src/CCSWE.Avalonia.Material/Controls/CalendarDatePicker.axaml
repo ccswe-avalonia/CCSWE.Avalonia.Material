@@ -21,7 +21,7 @@
                                 CornerRadius="{DynamicResource CornerRadiusFull}"
                                 Background="{DynamicResource OnSurfaceVariant}"
                                 Opacity="0" />
-                        <PathIcon Width="20" Height="20"
+                        <PathIcon Theme="{DynamicResource Material_SymbolTheme}"
                                   Foreground="{DynamicResource OnSurfaceVariant}"
                                   Data="{DynamicResource Material_IconCalendarMonth}" />
                       </Panel>
