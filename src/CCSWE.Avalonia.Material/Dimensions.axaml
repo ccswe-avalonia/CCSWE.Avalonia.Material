@@ -76,9 +76,20 @@
   <x:Double x:Key="SwitchThumbSizeCompact">12</x:Double>
   <x:Double x:Key="SwitchThumbSelectedSize">24</x:Double>
   <x:Double x:Key="SwitchThumbSelectedSizeCompact">18</x:Double>
-  <Thickness x:Key="SwitchThumbMargin">8,0,0,0</Thickness>
-  <Thickness x:Key="SwitchThumbMarginCompact">6,0,0,0</Thickness>
-  <Thickness x:Key="SwitchThumbSelectedMargin">24,0,0,0</Thickness>
-  <Thickness x:Key="SwitchThumbSelectedMarginCompact">19,0,0,0</Thickness>
+  <!-- M3 pressed thumb (28dp; compact ~0.75x). The thumb stays centered and slides via
+       translateX, so the pressed state only needs a size, never a positioning key. -->
+  <x:Double x:Key="SwitchThumbPressedSize">28</x:Double>
+  <x:Double x:Key="SwitchThumbPressedSizeCompact">21</x:Double>
+  <!-- Thumb slide: the track-sized thumb assembly is centered in the track and slides via
+       Canvas.Left; :checked flips the sign. 52dp track -> ±(52/2 - 16) = ±10; 40dp -> ±8. -->
+  <x:Double x:Key="SwitchThumbOffset">-10</x:Double>
+  <x:Double x:Key="SwitchThumbOffsetCompact">-8</x:Double>
+  <x:Double x:Key="SwitchThumbOffsetSelected">10</x:Double>
+  <x:Double x:Key="SwitchThumbOffsetSelectedCompact">8</x:Double>
+  <!-- 40dp circular hover/pressed state layer behind the thumb (compact ~0.75x). -->
+  <x:Double x:Key="SwitchStateLayerSize">40</x:Double>
+  <x:Double x:Key="SwitchStateLayerSizeCompact">30</x:Double>
+  <CornerRadius x:Key="SwitchStateLayerCornerRadius">20</CornerRadius>
+  <CornerRadius x:Key="SwitchStateLayerCornerRadiusCompact">15</CornerRadius>
 
 </ResourceDictionary>

@@ -1,8 +1,12 @@
 <!--
   Material 3 Switch (ToggleSwitch). 52x32 pill track, thumb grows 16dp -> 24dp
-  and slides as it checks; colors flip to Primary / OnPrimary. Thumb motion uses
-  the emphasized easing + short4 duration from Motion.axaml. Default ToggleSwitch
-  theme (no class needed).
+  and slides as it checks, 28dp while pressed; colors flip to Primary / OnPrimary.
+  A 40dp circular state layer (8% hover / 12% pressed) sits behind the thumb.
+  The thumb assembly is track-sized and centered, and slides via an animated
+  Canvas.Left (±10 default, ±8 compact), so any thumb size self-centers and the
+  pressed state only changes Width/Height. Thumb motion uses the emphasized
+  easing + short4 duration from Motion.axaml. Default ToggleSwitch theme (no class
+  needed).
 
   Avalonia 12 marks PART_SwitchKnob / PART_MovingKnobs as required template parts
   ([TemplatePart(IsRequired)]). The M3 visuals are driven by our own Track/Thumb
@@ -27,9 +31,10 @@
     <Setter Property="Template">
       <ControlTemplate TargetType="ToggleSwitch">
         <Grid ColumnDefinitions="Auto,*">
-          <Panel x:Name="SwitchOuter" Grid.Column="0"
+          <Canvas x:Name="SwitchOuter" Grid.Column="0"
                  Width="{DynamicResource SwitchTrackWidth}" Height="{DynamicResource SwitchTrackHeight}">
-            <Border x:Name="Track" CornerRadius="{DynamicResource SwitchTrackCornerRadius}"
+            <Border x:Name="Track" Width="{DynamicResource SwitchTrackWidth}" Height="{DynamicResource SwitchTrackHeight}"
+                    CornerRadius="{DynamicResource SwitchTrackCornerRadius}"
                     Background="{DynamicResource SurfaceContainerHighest}"
                     BorderBrush="{DynamicResource Outline}" BorderThickness="2">
               <Border.Transitions>
@@ -39,23 +44,45 @@
                 </Transitions>
               </Border.Transitions>
             </Border>
-            <Border x:Name="Thumb" Width="{DynamicResource SwitchThumbSize}" Height="{DynamicResource SwitchThumbSize}" CornerRadius="12"
-                    Background="{DynamicResource OnSurfaceVariant}"
-                    HorizontalAlignment="Left" VerticalAlignment="Center"
-                    Margin="{DynamicResource SwitchThumbMargin}">
-              <Border.Transitions>
+            <!-- Thumb assembly: track-sized and centered, sliding via an animated Canvas.Left
+                 (the same mechanism Avalonia's own ToggleSwitch knob uses). The state layer
+                 and the thumb share the slide, so both stay centered and any thumb size
+                 self-centers; the pressed state only animates Width/Height of the thumb. -->
+            <Panel x:Name="ThumbAssembly"
+                   Width="{DynamicResource SwitchTrackWidth}" Height="{DynamicResource SwitchTrackHeight}"
+                   Canvas.Left="{DynamicResource SwitchThumbOffset}">
+              <Panel.Transitions>
                 <Transitions>
-                  <ThicknessTransition Property="Margin" Duration="{DynamicResource MotionDurationShort4}" Easing="{DynamicResource MotionEasingEmphasized}" />
-                  <DoubleTransition Property="Width" Duration="{DynamicResource MotionDurationShort4}" Easing="{DynamicResource MotionEasingEmphasized}" />
-                  <DoubleTransition Property="Height" Duration="{DynamicResource MotionDurationShort4}" Easing="{DynamicResource MotionEasingEmphasized}" />
-                  <BrushTransition Property="Background" Duration="{DynamicResource MotionDurationShort4}" />
+                  <DoubleTransition Property="Canvas.Left" Duration="{DynamicResource MotionDurationShort4}" Easing="{DynamicResource MotionEasingEmphasized}" />
                 </Transitions>
-              </Border.Transitions>
-            </Border>
+              </Panel.Transitions>
+              <Border x:Name="StateLayer"
+                      Width="{DynamicResource SwitchStateLayerSize}" Height="{DynamicResource SwitchStateLayerSize}"
+                      CornerRadius="{DynamicResource SwitchStateLayerCornerRadius}"
+                      Background="{DynamicResource OnSurfaceVariant}" Opacity="0"
+                      HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border.Transitions>
+                  <Transitions>
+                    <DoubleTransition Property="Opacity" Duration="{DynamicResource MotionDurationShort2}" />
+                  </Transitions>
+                </Border.Transitions>
+              </Border>
+              <Border x:Name="Thumb" Width="{DynamicResource SwitchThumbSize}" Height="{DynamicResource SwitchThumbSize}" CornerRadius="12"
+                      Background="{DynamicResource OnSurfaceVariant}"
+                      HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Border.Transitions>
+                  <Transitions>
+                    <DoubleTransition Property="Width" Duration="{DynamicResource MotionDurationShort4}" Easing="{DynamicResource MotionEasingEmphasized}" />
+                    <DoubleTransition Property="Height" Duration="{DynamicResource MotionDurationShort4}" Easing="{DynamicResource MotionEasingEmphasized}" />
+                    <BrushTransition Property="Background" Duration="{DynamicResource MotionDurationShort4}" />
+                  </Transitions>
+                </Border.Transitions>
+              </Border>
+            </Panel>
             <!-- Required Avalonia 12 parts (inert) - see header note. -->
             <Panel x:Name="PART_SwitchKnob" IsVisible="False" />
             <Panel x:Name="PART_MovingKnobs" IsVisible="False" />
-          </Panel>
+          </Canvas>
           <StackPanel Grid.Column="1" Orientation="Horizontal"
                       VerticalAlignment="Center" Margin="8,0,0,0">
             <ContentPresenter x:Name="PART_ContentPresenter"
@@ -80,6 +107,19 @@
       </ControlTemplate>
     </Setter>
 
+    <!-- Thumb slide: the track-sized thumb assembly is centered and only Canvas.Left changes
+         on :checked (±10 default, ±8 compact). Sizes below therefore never need their own
+         positioning keys. -->
+    <Style Selector="^:checked /template/ Panel#ThumbAssembly">
+      <Setter Property="Canvas.Left" Value="{DynamicResource SwitchThumbOffsetSelected}" />
+    </Style>
+    <Style Selector="^.Compact /template/ Panel#ThumbAssembly">
+      <Setter Property="Canvas.Left" Value="{DynamicResource SwitchThumbOffsetCompact}" />
+    </Style>
+    <Style Selector="^.Compact:checked /template/ Panel#ThumbAssembly">
+      <Setter Property="Canvas.Left" Value="{DynamicResource SwitchThumbOffsetSelectedCompact}" />
+    </Style>
+
     <Style Selector="^:checked /template/ Border#Track">
       <Setter Property="Background" Value="{DynamicResource Primary}" />
       <Setter Property="BorderBrush" Value="{DynamicResource Primary}" />
@@ -87,8 +127,11 @@
     <Style Selector="^:checked /template/ Border#Thumb">
       <Setter Property="Width" Value="{DynamicResource SwitchThumbSelectedSize}" />
       <Setter Property="Height" Value="{DynamicResource SwitchThumbSelectedSize}" />
-      <Setter Property="Margin" Value="{DynamicResource SwitchThumbSelectedMargin}" />
       <Setter Property="Background" Value="{DynamicResource OnPrimary}" />
+    </Style>
+    <!-- State layer tint follows the thumb: OnSurfaceVariant at rest, Primary when checked. -->
+    <Style Selector="^:checked /template/ Border#StateLayer">
+      <Setter Property="Background" Value="{DynamicResource Primary}" />
     </Style>
 
     <Style Selector="^:checked /template/ ContentPresenter#PART_OnContentPresenter">
@@ -101,27 +144,58 @@
     <!-- Opt-in compact density (independent of the theme-level DensityStyle property),
          scaling the whole switch assembly ~0.75x. The :checked variant is more specific,
          so it wins over both the base ^:checked thumb and the unchecked ^.Compact thumb. -->
-    <Style Selector="^.Compact /template/ Panel#SwitchOuter">
+    <Style Selector="^.Compact /template/ Canvas#SwitchOuter">
       <Setter Property="Width" Value="{DynamicResource SwitchTrackWidthCompact}" />
       <Setter Property="Height" Value="{DynamicResource SwitchTrackHeightCompact}" />
     </Style>
     <Style Selector="^.Compact /template/ Border#Track">
+      <Setter Property="Width" Value="{DynamicResource SwitchTrackWidthCompact}" />
+      <Setter Property="Height" Value="{DynamicResource SwitchTrackHeightCompact}" />
       <Setter Property="CornerRadius" Value="{DynamicResource SwitchTrackCornerRadiusCompact}" />
+    </Style>
+    <Style Selector="^.Compact /template/ Panel#ThumbAssembly">
+      <Setter Property="Width" Value="{DynamicResource SwitchTrackWidthCompact}" />
+      <Setter Property="Height" Value="{DynamicResource SwitchTrackHeightCompact}" />
+    </Style>
+    <Style Selector="^.Compact /template/ Border#StateLayer">
+      <Setter Property="Width" Value="{DynamicResource SwitchStateLayerSizeCompact}" />
+      <Setter Property="Height" Value="{DynamicResource SwitchStateLayerSizeCompact}" />
+      <Setter Property="CornerRadius" Value="{DynamicResource SwitchStateLayerCornerRadiusCompact}" />
     </Style>
     <Style Selector="^.Compact /template/ Border#Thumb">
       <Setter Property="Width" Value="{DynamicResource SwitchThumbSizeCompact}" />
       <Setter Property="Height" Value="{DynamicResource SwitchThumbSizeCompact}" />
-      <Setter Property="Margin" Value="{DynamicResource SwitchThumbMarginCompact}" />
     </Style>
     <Style Selector="^.Compact:checked /template/ Border#Thumb">
       <Setter Property="Width" Value="{DynamicResource SwitchThumbSelectedSizeCompact}" />
       <Setter Property="Height" Value="{DynamicResource SwitchThumbSelectedSizeCompact}" />
-      <Setter Property="Margin" Value="{DynamicResource SwitchThumbSelectedMarginCompact}" />
+    </Style>
+
+    <!-- M3 state layer: 40dp circle behind the thumb, 8% on hover / 12% while pressed.
+         :pressed is listed after :pointerover so it wins when both apply. -->
+    <Style Selector="^:pointerover /template/ Border#StateLayer">
+      <Setter Property="Opacity" Value="0.08" />
+    </Style>
+    <Style Selector="^:pressed /template/ Border#StateLayer">
+      <Setter Property="Opacity" Value="0.12" />
+    </Style>
+
+    <!-- M3 pressed: the thumb grows to 28dp (compact-scaled). Placed after the
+         :checked / .Compact rules so the larger pressed size wins in every combination;
+         the slide position is unaffected because the thumb stays centered. -->
+    <Style Selector="^:pressed /template/ Border#Thumb">
+      <Setter Property="Width" Value="{DynamicResource SwitchThumbPressedSize}" />
+      <Setter Property="Height" Value="{DynamicResource SwitchThumbPressedSize}" />
+    </Style>
+    <Style Selector="^.Compact:pressed /template/ Border#Thumb">
+      <Setter Property="Width" Value="{DynamicResource SwitchThumbPressedSizeCompact}" />
+      <Setter Property="Height" Value="{DynamicResource SwitchThumbPressedSizeCompact}" />
     </Style>
 
     <!-- Disabled: neutral recolor (NOT a whole-element opacity dim), placed AFTER the
-         :checked rules so a disabled CHECKED switch reads M3 gray, not faded Primary.
-         Track -> OnSurface12, thumb + label -> OnSurface38. -->
+         :checked and :pressed rules so a disabled switch reads M3 gray, not faded
+         Primary. Track -> OnSurface12, unchecked thumb + label -> OnSurface38,
+         CHECKED thumb -> Surface (M3), state layer stays hidden. -->
     <Style Selector="^:disabled /template/ ContentPresenter#PART_ContentPresenter">
       <Setter Property="TextElement.Foreground" Value="{DynamicResource OnSurface38}" />
     </Style>
@@ -131,6 +205,12 @@
     </Style>
     <Style Selector="^:disabled /template/ Border#Thumb">
       <Setter Property="Background" Value="{DynamicResource OnSurface38}" />
+    </Style>
+    <Style Selector="^:disabled:checked /template/ Border#Thumb">
+      <Setter Property="Background" Value="{DynamicResource Surface}" />
+    </Style>
+    <Style Selector="^:disabled /template/ Border#StateLayer">
+      <Setter Property="Opacity" Value="0" />
     </Style>
   </ControlTheme>
   </Styles.Resources>
