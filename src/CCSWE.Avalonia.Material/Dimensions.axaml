@@ -78,7 +78,7 @@
   <x:Double x:Key="SwitchThumbSelectedSizeCompact">18</x:Double>
   <Thickness x:Key="SwitchThumbMargin">8,0,0,0</Thickness>
   <Thickness x:Key="SwitchThumbMarginCompact">6,0,0,0</Thickness>
-  <Thickness x:Key="SwitchThumbSelectedMargin">20,0,0,0</Thickness>
-  <Thickness x:Key="SwitchThumbSelectedMarginCompact">16,0,0,0</Thickness>
+  <Thickness x:Key="SwitchThumbSelectedMargin">24,0,0,0</Thickness>
+  <Thickness x:Key="SwitchThumbSelectedMarginCompact">19,0,0,0</Thickness>
 
 </ResourceDictionary>
