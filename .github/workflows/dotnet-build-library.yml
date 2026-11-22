@@ -54,7 +54,7 @@ jobs:
     if: ${{ !cancelled() && needs.pipeline.result == 'success' && needs.pipeline.outputs.owners != '' }}
     permissions:
       contents: read
-    uses: ccswe-apps/actions/.github/workflows/dispatch-dependents.yml@v1
+    uses: ccswe-apps/actions/.github/workflows/dispatch-dependents.yml@dispatch-dependents-skip-fork-discovery
     with:
       owners: ${{ needs.pipeline.outputs.owners }}
       updater: ccswe-apps/actions/.github/workflows/dotnet-update-dependencies.yml
