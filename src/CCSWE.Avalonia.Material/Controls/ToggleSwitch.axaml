@@ -1,7 +1,7 @@
 <!--
   Material 3 Switch (ToggleSwitch). 52x32 pill track, thumb grows 16dp -> 24dp
   and slides as it checks, 28dp while pressed; colors flip to Primary / OnPrimary.
-  A 40dp circular state layer (8% hover / 12% pressed) sits behind the thumb.
+  A 40dp circular state layer (8% hover / 10% pressed) sits behind the thumb.
   The thumb assembly is track-sized and centered, and slides via an animated
   Canvas.Left (±10 default, ±8 compact), so any thumb size self-centers and the
   pressed state only changes Width/Height. Thumb motion uses the emphasized
@@ -59,7 +59,7 @@
               <Border x:Name="StateLayer"
                       Width="{DynamicResource SwitchStateLayerSize}" Height="{DynamicResource SwitchStateLayerSize}"
                       CornerRadius="{DynamicResource SwitchStateLayerCornerRadius}"
-                      Background="{DynamicResource OnSurfaceVariant}" Opacity="0"
+                      Background="{DynamicResource OnSurface}" Opacity="0"
                       HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Border.Transitions>
                   <Transitions>
@@ -129,7 +129,7 @@
       <Setter Property="Height" Value="{DynamicResource SwitchThumbSelectedSize}" />
       <Setter Property="Background" Value="{DynamicResource OnPrimary}" />
     </Style>
-    <!-- State layer tint follows the thumb: OnSurfaceVariant at rest, Primary when checked. -->
+    <!-- State layer tint (M3 switch tokens): OnSurface unchecked, Primary checked. -->
     <Style Selector="^:checked /template/ Border#StateLayer">
       <Setter Property="Background" Value="{DynamicResource Primary}" />
     </Style>
@@ -171,13 +171,13 @@
       <Setter Property="Height" Value="{DynamicResource SwitchThumbSelectedSizeCompact}" />
     </Style>
 
-    <!-- M3 state layer: 40dp circle behind the thumb, 8% on hover / 12% while pressed.
+    <!-- M3 state layer: 40dp circle behind the thumb, 8% on hover / 10% while pressed.
          :pressed is listed after :pointerover so it wins when both apply. -->
     <Style Selector="^:pointerover /template/ Border#StateLayer">
       <Setter Property="Opacity" Value="0.08" />
     </Style>
     <Style Selector="^:pressed /template/ Border#StateLayer">
-      <Setter Property="Opacity" Value="0.12" />
+      <Setter Property="Opacity" Value="0.10" />
     </Style>
 
     <!-- M3 pressed: the thumb grows to 28dp (compact-scaled). Placed after the
