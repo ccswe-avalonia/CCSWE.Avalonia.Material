@@ -65,7 +65,7 @@ dotnet test src/CCSWE.Avalonia.Material.slnx
 dotnet test src/CCSWE.Avalonia.Material.slnx --filter "FullyQualifiedName~ClassName"
 ```
 
-The SDK is pinned via the root `global.json`. `src/Directory.Build.props` sets the TFM, `LangVersion`, `ImplicitUsings`, and `Nullable` solution-wide, and references JetBrains.Annotations, Nerdbank.GitVersioning (version derived from git history — base in the root `version.json`), and Microsoft.SourceLink.GitHub.
+The SDK is pinned via the root `global.json`. `src/Directory.Build.props` sets the TFM, `LangVersion`, `ImplicitUsings`, `Nullable` and `AvaloniaUseCompiledBindingsByDefault` solution-wide, and references JetBrains.Annotations, Nerdbank.GitVersioning (version derived from git history — base in the root `version.json`), and Microsoft.SourceLink.GitHub. The root `.editorconfig` promotes the Avalonia XAML compiler diagnostics that default to warnings (duplicate setters, styles in merged dictionaries, item containers inside templates, obsolete members) to errors.
 
 ## Package management
 
