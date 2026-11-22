@@ -41,7 +41,7 @@
   <x:Double x:Key="SwitchThumbSize">12</x:Double>
   <x:Double x:Key="SwitchThumbSelectedSize">18</x:Double>
   <Thickness x:Key="SwitchThumbMargin">6,0,0,0</Thickness>
-  <Thickness x:Key="SwitchThumbSelectedMargin">16,0,0,0</Thickness>
+  <Thickness x:Key="SwitchThumbSelectedMargin">19,0,0,0</Thickness>
 
   <!-- Page-shell tab header (TabbedPage defines its own base key locally; shadow it here) -->
   <x:Double x:Key="TabbedPageTabItemHeaderMinHeight">40</x:Double>

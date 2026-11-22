@@ -26,11 +26,16 @@
             <Border x:Name="Box" Width="18" Height="18" CornerRadius="2"
                     BorderThickness="2" BorderBrush="{DynamicResource OnSurfaceVariant}"
                     Background="Transparent">
-              <Path x:Name="CheckGlyph"
-                    Width="14" Height="14" Stretch="Uniform"
-                    Fill="{DynamicResource OnPrimary}"
-                    Data="{DynamicResource Material_IconCheck}" IsVisible="False"
-                    HorizontalAlignment="Center" VerticalAlignment="Center" />
+              <Viewbox Width="18" Height="18">
+                <Path x:Name="CheckGlyph"
+                      Width="960" Height="960"
+                      Fill="{DynamicResource OnPrimary}"
+                      Data="{DynamicResource Material_IconCheck}" IsVisible="False">
+                  <Path.RenderTransform>
+                    <TranslateTransform Y="960" />
+                  </Path.RenderTransform>
+                </Path>
+              </Viewbox>
             </Border>
           </Panel>
           <ContentPresenter Grid.Column="1" x:Name="PART_ContentPresenter"
