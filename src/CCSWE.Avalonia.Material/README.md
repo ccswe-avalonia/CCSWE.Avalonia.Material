@@ -54,6 +54,7 @@ depends only on Avalonia core. **No `<FluentTheme/>` (or other base theme) is re
 - **Text fields:** `Outlined`, `Filled`.
 - **Cards:** the `<theme:Card>` control for interactive cards (`Elevated` / `Filled` / `Outlined`, M3 hover/press state layers, `Command` / `Click`; clickable when a `Command` is set or `IsClickable="True"`), or a plain `Border` with `Card` + `Elevated` / `Filled` / `Outlined` for static surfaces.
 - **Divider:** the `<theme:Divider>` control — a thin M3 rule, with an optional `Header` that turns it into a leading section header (label on the rule's axis, hairline filling to its right); omit it for a plain full-width rule.
+- **Badge:** the `<theme:Badge>` control — an M3 badge for counts and status: a 6dp dot with no content, a 16dp pill with a label (e.g. `Content="3"`). Place it on an icon as the last child of `<theme:BadgedPanel>`, which pins it to the top-right corner. It uses `ErrorFill` / `OnErrorFill`; set `Background` / `Foreground` (a fill pair such as `PrimaryFill` / `OnPrimaryFill`) for another color.
 - **Circular progress:** the `<theme:CircularProgressIndicator>` control — determinate (`Value` / `Minimum` / `Maximum`) or an `IsIndeterminate="True"` spinner; the ring counterpart to the linear `ProgressBar`.
 - **Default-themed (no class):** `ToggleButton`, `AutoCompleteBox`, `NumericUpDown`,
   `CheckBox`, `RadioButton`, `ToggleSwitch`, `ListBox`, `TreeView`, `ComboBox`,

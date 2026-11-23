@@ -96,6 +96,8 @@ Verdict key: **✓** matches M3 · **⚠** minor/intentional deviation · **✗*
 | GroupBox | padding | 16 | n/a | n/a | not an M3 component |
 | Expander | header padding | 16,14 | n/a | n/a | M3 expander is newer/unstable; 16,14 reasonable |
 | Divider | thickness | 1 | 1 | ✓ | |
+| Badge (small) | size + shape | 6 dot, full radius | 6 | ✓ | |
+| Badge (large) | height / min width / padding | 16 / 16 / 4, full radius | 16 / 16 / 4 | ✓ | Label Small (Medium); `ErrorFill` / `OnErrorFill` (the repo fill pair; M3 uses error / on-error) |
 | ToolTip | padding | 8,5 | 8 / 4 (plain) | ⚠ | vertical 5 vs ~4; trivial |
 | NotificationCard | min height + padding | 64 + 16,12 | 48 (snackbar single-line) | ⚠ | 64 taller than single-line snackbar; intentional for richer cards — confirm |
 | FlyoutPresenter / Menu popup | padding | 4 / 0,4 | 8 (menu v-pad) | ⚠ | menu vertical padding 4 vs M3 8; trivial |

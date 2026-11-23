@@ -27,10 +27,12 @@
                         <theme:Badge Margin="8" />
                         <theme:Badge Content="1" Margin="8" />
                         <theme:Badge Content="999+" Margin="8" />
+                        <theme:Badge Content="New" Margin="8"
+                                     Background="{DynamicResource PrimaryFill}" Foreground="{DynamicResource OnPrimaryFill}" />
                         <theme:BadgedPanel Margin="8">
                             <PathIcon Theme="{DynamicResource Material_SymbolTheme}"
                                       Data="{DynamicResource Material_IconCalendarMonth}" />
-                            <theme:BadgedPanel />
+                            <theme:Badge />
                         </theme:BadgedPanel>
                         <theme:BadgedPanel Margin="8">
                             <PathIcon Theme="{DynamicResource Material_SymbolTheme}"
