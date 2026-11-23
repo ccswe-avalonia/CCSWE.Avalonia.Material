@@ -55,6 +55,9 @@ dotnet build src/CCSWE.Avalonia.Material.slnx --configuration Release
 # catch, see docs/wslg-gui-debugging.md.
 dotnet run --project src/CCSWE.Avalonia.Material.Demo
 
+# Regenerate the README demo GIF (docs/images/demo.gif; Linux: Xvfb, xdotool, ffmpeg, gifsicle)
+eng/record-demo-gif.sh
+
 # Pack the NuGet package (library only)
 dotnet pack src/CCSWE.Avalonia.Material/CCSWE.Avalonia.Material.csproj --configuration Release
 

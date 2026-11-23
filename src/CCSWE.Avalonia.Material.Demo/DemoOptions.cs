@@ -5,13 +5,18 @@ namespace CCSWE.Avalonia.Material.Demo;
 
 /// <summary>
 /// Command-line options for the gallery "record" mode — a hands-free tour (smooth-scroll every
-/// section, switch Dark→Light, repeat) used to capture the README GIF with an external recorder
-/// such as ShareX. Enabled with <c>--record</c>; the start delay gives time to begin recording.
+/// section, switch Dark→Light, repeat) used to capture the README GIF. Enabled with <c>--record</c>;
+/// the start delay gives time to begin recording. The tour prints <c>tour: start &lt;ms epoch&gt;</c> and
+/// <c>tour: end &lt;ms epoch&gt;</c> to stdout, and <c>--exit</c> quits after it; <c>eng/record-demo-gif.sh</c>
+/// uses both to record and trim the GIF.
 /// </summary>
 public sealed class DemoOptions
 {
     /// <summary>Pause at the top/bottom of each section and after switching theme.</summary>
     public TimeSpan Dwell { get; init; } = TimeSpan.FromMilliseconds(500);
+
+    /// <summary>Quit after one tour (no effect with <see cref="Loop"/>).</summary>
+    public bool Exit { get; init; }
 
     /// <summary>Repeat the whole Dark→Light tour until the app is closed.</summary>
     public bool Loop { get; init; }
@@ -32,6 +37,7 @@ public sealed class DemoOptions
         // Seed from the property defaults so they're the single source of truth.
         var defaults = new DemoOptions();
         var dwell = defaults.Dwell;
+        var exit = defaults.Exit;
         var loop = defaults.Loop;
         var record = defaults.Record;
         var scrollSpeed = defaults.ScrollSpeed;
@@ -46,6 +52,9 @@ public sealed class DemoOptions
                     break;
                 case "--loop":
                     loop = true;
+                    break;
+                case "--exit":
+                    exit = true;
                     break;
                 case "--start-delay" when TryNext(args, ref i, out var sd):
                     startDelay = TimeSpan.FromSeconds(sd);
@@ -62,6 +71,7 @@ public sealed class DemoOptions
         return new DemoOptions
         {
             Dwell = dwell,
+            Exit = exit,
             Loop = loop,
             Record = record,
             ScrollSpeed = scrollSpeed,

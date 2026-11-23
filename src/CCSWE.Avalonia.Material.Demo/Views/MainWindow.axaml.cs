@@ -142,6 +142,9 @@ public partial class MainWindow : Window
     {
         await CountdownAsync(options.StartDelay);
 
+        // Wall-clock markers for eng/record-demo-gif.sh, which trims the recording to them.
+        Console.WriteLine($"tour: start {DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}");
+
         do
         {
             foreach (var variant in new[] { ThemeVariant.Dark, ThemeVariant.Light })
@@ -165,6 +168,18 @@ public partial class MainWindow : Window
             }
         }
         while (options.Loop);
+
+        // Before the settle-back below, so it stays out of the recording.
+        Console.WriteLine($"tour: end {DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()}");
+
+        if (options.Exit)
+        {
+            // Hold the last page so the recording's final frames show it, then close the only window;
+            // the default ShutdownMode (OnLastWindowClose) exits with code 0.
+            await Task.Delay(TimeSpan.FromSeconds(1));
+            Close();
+            return;
+        }
 
         // Settle back to a neutral state.
         SetTheme(ThemeVariant.Dark);

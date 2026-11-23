@@ -40,16 +40,12 @@ Xvfb :99 -screen 0 1600x1000x24 -nolisten tcp   # in the BACKGROUND
 ```
 
 There is no window manager, so the window opens at a fixed position and needs no activation.
-Wait about a second after a nav click before capturing (the page cross-fade). To record the
-`--record` tour, capture the window region with ffmpeg and convert it for
-`eng/optimize-demo-gif.sh` (window position from `xdotool getwindowgeometry`):
+Wait about a second after a nav click before capturing (the page cross-fade).
 
-```bash
-ffmpeg -f x11grab -framerate 15 -video_size 1024x768 -i ":99.0+<x>,<y>" tour.mp4
-ffmpeg -ss <start> -to <end> -i tour.mp4 \
-  -vf "fps=5,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=none:diff_mode=rectangle" raw.gif
-SCALE=0.727 eng/optimize-demo-gif.sh raw.gif    # 1024px -> the README's 744px
-```
+To regenerate the README GIF, run `eng/record-demo-gif.sh` (needs Xvfb, xdotool, ffmpeg and
+gifsicle): it runs the Demo's `--record --exit` tour on a private Xvfb display, records the window,
+cuts at the tour's start/end markers and writes `docs/images/demo.gif`. On other hosts, capture the
+`--record --exit` tour with a screen recorder such as ShareX and run `eng/optimize-demo-gif.sh`.
 
 ---
 
