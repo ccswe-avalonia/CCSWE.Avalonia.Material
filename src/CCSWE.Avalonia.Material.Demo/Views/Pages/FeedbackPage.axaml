@@ -22,6 +22,30 @@
                         <theme:CircularProgressIndicator IsIndeterminate="True" />
                     </WrapPanel>
 
+                    <TextBlock Classes="LabelMedium" Foreground="{DynamicResource OnSurfaceVariant}" Text="BADGE" />
+                    <WrapPanel>
+                        <theme:Badge Margin="8" />
+                        <theme:Badge Content="1" Margin="8" />
+                        <theme:Badge Content="999+" Margin="8" />
+                        <theme:Badge Content="New" Margin="8"
+                                     Background="{DynamicResource PrimaryFill}" Foreground="{DynamicResource OnPrimaryFill}" />
+                        <theme:BadgedPanel Margin="8">
+                            <PathIcon Theme="{DynamicResource Material_SymbolTheme}"
+                                      Data="{DynamicResource Material_IconCalendarMonth}" />
+                            <theme:Badge />
+                        </theme:BadgedPanel>
+                        <theme:BadgedPanel Margin="8">
+                            <PathIcon Theme="{DynamicResource Material_SymbolTheme}"
+                                      Data="{DynamicResource Material_IconCalendarMonth}" />
+                            <theme:Badge Content="1" />
+                        </theme:BadgedPanel>
+                        <theme:BadgedPanel Margin="8">
+                            <PathIcon Theme="{DynamicResource Material_SymbolTheme}"
+                                      Data="{DynamicResource Material_IconCalendarMonth}" />
+                            <theme:Badge Content="999+" />
+                        </theme:BadgedPanel>
+                    </WrapPanel>
+
                     <TextBlock Classes="LabelMedium" Foreground="{DynamicResource OnSurfaceVariant}" Text="TOOLTIP" />
                     <WrapPanel>
                         <Button Classes="Outlined" Content="Hover for tooltip" Margin="0,0,12,0"

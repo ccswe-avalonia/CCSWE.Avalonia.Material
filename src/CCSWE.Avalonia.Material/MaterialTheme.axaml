@@ -66,6 +66,7 @@
   <StyleInclude Source="avares://CCSWE.Avalonia.Material/Typography.axaml" />
   <!-- Controls/* hand-authored M3 ControlThemes (alphabetical; applied after Base/*) -->
   <StyleInclude Source="avares://CCSWE.Avalonia.Material/Controls/AutoCompleteBox.axaml" />
+  <StyleInclude Source="avares://CCSWE.Avalonia.Material/Controls/Badge.axaml" />
   <StyleInclude Source="avares://CCSWE.Avalonia.Material/Controls/Button.axaml" />
   <StyleInclude Source="avares://CCSWE.Avalonia.Material/Controls/Calendar.axaml" />
   <StyleInclude Source="avares://CCSWE.Avalonia.Material/Controls/CalendarButton.axaml" />
