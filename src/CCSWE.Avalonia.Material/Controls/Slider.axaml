@@ -13,6 +13,10 @@
   through the inactive portion; the Track stacks after the rail so the fill and
   thumb sit on top. Avalonia's Slider template requires the named parts
   PART_Track / PART_DecreaseButton / PART_IncreaseButton / thumb.
+
+  The thumb's 40dp state layer overhangs the 20dp thumb by 10dp, so the track is
+  inset 10dp at both ends and the cross axis is at least 40dp: the state layer
+  stays inside the control and a clipping parent can't cut it off.
 -->
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -84,14 +88,14 @@
     <ControlTheme x:Key="{x:Type Slider}" TargetType="Slider">
       <Setter Property="Background" Value="{DynamicResource SurfaceContainerHighest}" />
       <Setter Property="Foreground" Value="{DynamicResource Primary}" />
-      <Setter Property="MinHeight" Value="40" />
 
       <!-- Horizontal -->
       <Style Selector="^:horizontal">
+        <Setter Property="MinHeight" Value="40" />
         <Setter Property="Template">
           <ControlTemplate TargetType="Slider">
             <Border Background="Transparent" Padding="0">
-              <Grid x:Name="SliderContainer" Margin="0">
+              <Grid x:Name="SliderContainer" Margin="10,0">
                 <Grid.RowDefinitions>
                   <RowDefinition Height="*" />
                   <RowDefinition Height="Auto" />
@@ -120,10 +124,12 @@
 
       <!-- Vertical -->
       <Style Selector="^:vertical">
+        <Setter Property="MinWidth" Value="40" />
+        <Setter Property="MinHeight" Value="60" />
         <Setter Property="Template">
           <ControlTemplate TargetType="Slider">
             <Border Background="Transparent" Padding="0">
-              <Grid x:Name="SliderContainer">
+              <Grid x:Name="SliderContainer" Margin="0,10">
                 <Grid.ColumnDefinitions>
                   <ColumnDefinition Width="*" />
                   <ColumnDefinition Width="Auto" />

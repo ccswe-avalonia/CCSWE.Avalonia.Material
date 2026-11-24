@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Layout;
 using Avalonia.Headless.NUnit;
 using Avalonia.Media;
 using Avalonia.Styling;
@@ -30,7 +31,8 @@ public class ToggleSwitchTests
         {
             Theme.DensityStyle = density;
 
-            var toggle = new ToggleSwitch { IsChecked = isChecked, IsEnabled = !disabled };
+            // Left-aligned so the control is only as wide as its template, and a horizontal overhang shows.
+            var toggle = new ToggleSwitch { IsChecked = isChecked, IsEnabled = !disabled, HorizontalAlignment = HorizontalAlignment.Left };
             if (compactClass)
             {
                 toggle.Classes.Add("Compact");
@@ -57,7 +59,9 @@ public class ToggleSwitchTests
                 stateLayer.Opacity,
                 ((ISolidColorBrush)thumb.Background!).Color,
                 ((ISolidColorBrush)stateLayer.Background!).Color,
-                toggle.ActualThemeVariant);
+                toggle.ActualThemeVariant,
+                new Rect(stateLayer.TranslatePoint(default, toggle)!.Value, stateLayer.Bounds.Size),
+                toggle.Bounds.Size);
         }
         finally
         {
@@ -166,6 +170,48 @@ public class ToggleSwitchTests
             Assert.That(Inspect(isChecked: false, pseudoClasses: ":pressed").StateLayerOpacity, Is.EqualTo(0.10));
     }
 
+    // The state layer overhangs the track; the control reserves the overhang so a clipping parent can't cut it off (#78).
+    public class When_The_State_Layer_Is_Laid_Out : ToggleSwitchTests
+    {
+        [AvaloniaTest]
+        public void It_fits_the_unchecked_state_layer_in_the_control() =>
+            Assert.That(Inspect(isChecked: false).StateLayer, Is.EqualTo(new Rect(0, 0, 40, 40)));
+
+        [AvaloniaTest]
+        public void It_fits_the_checked_state_layer_in_the_control() =>
+            Assert.That(Inspect(isChecked: true).StateLayer, Is.EqualTo(new Rect(20, 0, 40, 40)));
+
+        [AvaloniaTest]
+        public void It_fits_the_pressed_state_layer_in_the_control() =>
+            Assert.That(Inspect(isChecked: false, pseudoClasses: ":pressed").StateLayer, Is.EqualTo(new Rect(0, 0, 40, 40)));
+
+        [AvaloniaTest]
+        public void It_makes_the_control_40_high() =>
+            Assert.That(Inspect(isChecked: false).ToggleSize.Height, Is.EqualTo(40));
+
+        [AvaloniaTest]
+        public void It_fits_the_compact_density_state_layer_in_the_control()
+        {
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(Inspect(isChecked: false, DensityStyle.Compact).StateLayer, Is.EqualTo(new Rect(0, 0, 30, 30)));
+                Assert.That(Inspect(isChecked: true, DensityStyle.Compact).StateLayer, Is.EqualTo(new Rect(16, 0, 30, 30)));
+                Assert.That(Inspect(isChecked: false, DensityStyle.Compact).ToggleSize.Height, Is.EqualTo(30));
+            }
+        }
+
+        [AvaloniaTest]
+        public void It_fits_the_compact_class_state_layer_in_the_control()
+        {
+            using (Assert.EnterMultipleScope())
+            {
+                Assert.That(Inspect(isChecked: false, compactClass: true).StateLayer, Is.EqualTo(new Rect(0, 0, 30, 30)));
+                Assert.That(Inspect(isChecked: true, compactClass: true).StateLayer, Is.EqualTo(new Rect(16, 0, 30, 30)));
+                Assert.That(Inspect(isChecked: false, compactClass: true).ToggleSize.Height, Is.EqualTo(30));
+            }
+        }
+    }
+
     public class When_Disabled : ToggleSwitchTests
     {
         [AvaloniaTest]
@@ -195,5 +241,7 @@ public class ToggleSwitchTests
         double StateLayerOpacity,
         Color ThumbColor,
         Color StateLayerColor,
-        ThemeVariant? Variant);
+        ThemeVariant? Variant,
+        Rect StateLayer,
+        Size ToggleSize);
 }

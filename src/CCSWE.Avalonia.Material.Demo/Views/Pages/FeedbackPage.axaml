@@ -11,6 +11,9 @@
                 <StackPanel Spacing="16">
                     <TextBlock Classes="LabelMedium" Foreground="{DynamicResource OnSurfaceVariant}" Text="SLIDER" />
                     <Slider Minimum="0" Maximum="100" Value="60" />
+                    <Slider Minimum="0" Maximum="100" Value="0" />
+                    <Slider Minimum="0" Maximum="100" Value="100" />
+                    <Slider Orientation="Vertical" Minimum="0" Maximum="100" Value="30" Height="160" HorizontalAlignment="Left" />
 
                     <TextBlock Classes="LabelMedium" Foreground="{DynamicResource OnSurfaceVariant}" Text="PROGRESSBAR" />
                     <ProgressBar Minimum="0" Maximum="100" Value="60" Height="8" />
