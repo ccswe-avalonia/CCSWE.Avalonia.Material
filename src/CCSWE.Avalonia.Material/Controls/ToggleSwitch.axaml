@@ -1,7 +1,9 @@
 <!--
   Material 3 Switch (ToggleSwitch). 52x32 pill track, thumb grows 16dp -> 24dp
   and slides as it checks, 28dp while pressed; colors flip to Primary / OnPrimary.
-  A 40dp circular state layer (8% hover / 10% pressed) sits behind the thumb.
+  A 40dp circular state layer (8% hover / 10% pressed) sits behind the thumb; the
+  track is inset by its overhang (SwitchStateLayerInset), so the control is 60x40
+  (compact 46x30) and a clipping parent can't cut the state layer off.
   The thumb assembly is track-sized and centered, and slides via an animated
   Canvas.Left (±10 default, ±8 compact), so any thumb size self-centers and the
   pressed state only changes Width/Height. Thumb motion uses the emphasized
@@ -31,7 +33,7 @@
     <Setter Property="Template">
       <ControlTemplate TargetType="ToggleSwitch">
         <Grid ColumnDefinitions="Auto,*">
-          <Canvas x:Name="SwitchOuter" Grid.Column="0"
+          <Canvas x:Name="SwitchOuter" Grid.Column="0" Margin="{DynamicResource SwitchStateLayerInset}"
                  Width="{DynamicResource SwitchTrackWidth}" Height="{DynamicResource SwitchTrackHeight}">
             <Border x:Name="Track" Width="{DynamicResource SwitchTrackWidth}" Height="{DynamicResource SwitchTrackHeight}"
                     CornerRadius="{DynamicResource SwitchTrackCornerRadius}"
@@ -83,8 +85,8 @@
             <Panel x:Name="PART_SwitchKnob" IsVisible="False" />
             <Panel x:Name="PART_MovingKnobs" IsVisible="False" />
           </Canvas>
-          <StackPanel Grid.Column="1" Orientation="Horizontal"
-                      VerticalAlignment="Center" Margin="8,0,0,0">
+          <StackPanel x:Name="Label" Grid.Column="1" Orientation="Horizontal"
+                      VerticalAlignment="Center" Margin="{DynamicResource SwitchLabelMargin}">
             <ContentPresenter x:Name="PART_ContentPresenter"
                               Content="{TemplateBinding Content}"
                               ContentTemplate="{TemplateBinding ContentTemplate}"
@@ -147,6 +149,10 @@
     <Style Selector="^.Compact /template/ Canvas#SwitchOuter">
       <Setter Property="Width" Value="{DynamicResource SwitchTrackWidthCompact}" />
       <Setter Property="Height" Value="{DynamicResource SwitchTrackHeightCompact}" />
+      <Setter Property="Margin" Value="{DynamicResource SwitchStateLayerInsetCompact}" />
+    </Style>
+    <Style Selector="^.Compact /template/ StackPanel#Label">
+      <Setter Property="Margin" Value="{DynamicResource SwitchLabelMarginCompact}" />
     </Style>
     <Style Selector="^.Compact /template/ Border#Track">
       <Setter Property="Width" Value="{DynamicResource SwitchTrackWidthCompact}" />
@@ -171,7 +177,7 @@
       <Setter Property="Height" Value="{DynamicResource SwitchThumbSelectedSizeCompact}" />
     </Style>
 
-    <!-- M3 state layer: 40dp circle behind the thumb, 8% on hover / 10% while pressed.
+    <!-- M3 state layer: 40dp circle behind the thumb (inside the control: see the track inset), 8% on hover / 10% while pressed.
          :pressed is listed after :pointerover so it wins when both apply. -->
     <Style Selector="^:pointerover /template/ Border#StateLayer">
       <Setter Property="Opacity" Value="0.08" />

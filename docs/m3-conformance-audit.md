@@ -54,7 +54,8 @@ Verdict key: **✓** matches M3 · **⚠** minor/intentional deviation · **✗*
 | RadioButton | state layer | 40 (r20) | 40 | ✓ | |
 | RadioButton | touch target | 40 | 48 (min) | ⚠ | same 40-vs-48 note as CheckBox |
 | ToggleSwitch | track | 52×32 (r16, 2 outline) | 52×32 | ✓ | exact M3 switch — large by spec |
-| ToggleSwitch | thumb off→on | 16→24, centered 16 from each end | 16→24 | ✓ | (28 pressed not implemented — #69) |
+| ToggleSwitch | thumb off→on | 16→24 (28 pressed), centered 16 from each end | 16→24 (28 pressed) | ✓ | |
+| ToggleSwitch | state layer | 40 (r20), inside a 60×40 control (track inset 4) | 40 | ✓ | |
 
 ## Lists, menus, items, tabs
 
